@@ -1,0 +1,6 @@
+{
+  "file": "./for_nn_sat.nnet",
+  "input": [{"index": 0, "name": "satellite"},{"automaton": null, "name": "x"},{"automaton": null, "name": "A", "index":0},{"automaton": null, "name": "A", "index":1},{"automaton": null, "name": "A", "index":2},{"automaton": null, "name": "A", "index":3},{"automaton": null, "name": "y"},{"automaton": null, "name": "xx"},{"automaton": null, "name": "xxx"}],
+  "elements": [1],
+  "output": ["label1", "label2", "label3"]
+}

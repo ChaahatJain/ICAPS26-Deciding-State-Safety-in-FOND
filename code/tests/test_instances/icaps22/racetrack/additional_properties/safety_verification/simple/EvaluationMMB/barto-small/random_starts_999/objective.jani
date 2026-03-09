@@ -1,0 +1,14 @@
+{
+    "goal": {
+        "exp": "car0_finished",
+        "locations": [
+            {
+                "automaton": "map",
+                "index": 0,
+                "location": "map_car_finished"
+            }
+        ],
+        "op": "state-condition"
+    },
+    "op": "objective"
+}

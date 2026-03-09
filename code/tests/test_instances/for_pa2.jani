@@ -1,0 +1,82 @@
+{
+	"jani-version": 1,
+	"name": "for_pa2",
+	"type": "lts",
+	"features": [ "derived-operators" ],
+	"variables": [
+        {
+        "name": "arr",
+        "type":  { 
+                "kind":"array",
+                "base":                
+                    {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 1
+			        }
+                },
+          "initial-value": {
+			  					"op": "av",
+                              	"elements": [0,1,1,1]
+                            }
+
+        },
+		 {
+			        "name": "x",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 5
+			        },
+			        "initial-value": 3
+		}
+	],
+	"properties": [
+	{
+		"name": "predicate_abstraction",
+		"expression": {
+			"op": "PA",
+			"predicates": [
+				 {"op":"=", "left":"x", "right":3}, {"op":"=", "left":{"op":"aa", "exp":"arr", "index":"x"}, "right":0}
+			]
+		}
+
+	}
+	],
+	"automata": [
+		{
+			"name": "satellite",
+            "variables": [ 
+            ],
+			"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": true
+					},
+					"destinations": [
+						{
+							"location": "po0",
+							"assignments": [
+                                {
+                                "ref": "x",
+                                 "value": 3
+
+                                }
+							]
+						}
+					]
+				}		
+			]
+			
+		}
+	], 
+	"system": {
+		"elements": [ { "automaton": "satellite" }]
+	}
+}
+

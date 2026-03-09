@@ -1,0 +1,441 @@
+Parsing commandline ...
+	"../build/PlaJA" --engine FAULT_ANALYSIS --model-file ../../dataset/archive/flappy_birds/models/flappy_birds_x1000_y10_250walls_950skip.jani --seed 1234 --max-time 1800 --nn-interface ../../dataset/archive/flappy_birds/networks/flappy_birds_x1000_y10_250walls_950skip/flappy_birds_x1000_y10_250walls_950skip_64_64.jani2nnet --nn ../../dataset/archive/flappy_birds/networks/flappy_birds_x1000_y10_250walls_950skip/flappy_birds_x1000_y10_250walls_950skip_64_64.nnet --initial-state-enum sample --prop 1 --additional-properties ../../dataset/archive/flappy_birds/additional_properties/repair/random_starts_1000/flappy_birds_x1000_y10_250walls_950skip/pa_flappy_birds_x1000_y10_250walls_950skip_random_starts_1000.jani --oracle-use finding --oracle-mode infinite --infinite-oracle Tarjan --applicability-filtering 1 --fault-experiment-mode aggregate --search-dir backward --seconds-per-query 60 --num-starts 20 --save-intermediate-stats --distance-func avoid --cache-fault-search --retain-fault-cache --retraining-train-test-split 1.0 --rand-prob 1 --stats-file logs/fault_analysis/tarjansafe_x1000_y10_walls250_skip950.csv --print-stats
+... parsing commandline finished.
+
+Parsing model ...
+... parsing model finished.
+
+Executing static semantic checks ...
+... semantic checks passed.
+
+Skipping property flappy_birds_1000_10_250_950-safety.
+Checking property: pa_model-flappy_birds_x1000_y10_250walls_950skip_prop-random_starts_1000 ...
+Constructing REDUCTION_AGENT ...
+Loading NN file ...../../dataset/archive/flappy_birds/networks/flappy_birds_x1000_y10_250walls_950skip/flappy_birds_x1000_y10_250walls_950skip_64_64.nnet
+Successfully loaded nnet
+Interface File: ../../dataset/archive/flappy_birds/networks/flappy_birds_x1000_y10_250walls_950skip/flappy_birds_x1000_y10_250walls_950skip_64_64.jani2nnet
+DistanceFunctionType: avoid
+Searching ...
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 1
+DoneAvoid: 1
+PathsChecked: 1
+NoFaultPath: 1
+CacheOracle: 20279
+Coverage: 626
+NumOracleQueries: 626
+No: 626
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 0.620938
+NoCoverageTotalTime: 0.594579
+StateChecked: ∞«j;V
+FaultSolvingTimes: =j;V
+StatesForOracle: ‡Xüj;V
+Peak memory: 657184 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 2
+DoneAvoid: 2
+PathsChecked: 2
+NoFaultPath: 2
+CacheOracle: 40561
+Coverage: 1266
+NumOracleQueries: 1266
+No: 1266
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 1.243262
+NoCoverageTotalTime: 1.188792
+StateChecked: ‡±@j;V
+FaultSolvingTimes: `xBj;V
+StatesForOracle: ∞®k;V
+Peak memory: 664392 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 3
+DoneAvoid: 3
+PathsChecked: 3
+NoFaultPath: 3
+CacheOracle: 60864
+Coverage: 1911
+NumOracleQueries: 1911
+No: 1911
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 1.867269
+NoCoverageTotalTime: 1.783370
+StateChecked: ê≤Æj;V
+FaultSolvingTimes: ¿Ñk;V
+StatesForOracle: ¿pk;V
+Peak memory: 670568 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 4
+DoneAvoid: 4
+PathsChecked: 4
+NoFaultPath: 4
+CacheOracle: 81100
+Coverage: 2536
+NumOracleQueries: 2536
+No: 2536
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 2.491731
+NoCoverageTotalTime: 2.379373
+StateChecked: ÄÌk;V
+FaultSolvingTimes: –yk;V
+StatesForOracle: Pë’k;V
+Peak memory: 677036 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 5
+DoneAvoid: 5
+PathsChecked: 5
+NoFaultPath: 5
+CacheOracle: 101396
+Coverage: 3176
+NumOracleQueries: 3176
+No: 3176
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 3.111166
+NoCoverageTotalTime: 2.969927
+StateChecked: ık;V
+FaultSolvingTimes: `kﬂk;V
+StatesForOracle: †>6l;V
+Peak memory: 683244 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 6
+DoneAvoid: 6
+PathsChecked: 6
+NoFaultPath: 6
+CacheOracle: 121648
+Coverage: 3805
+NumOracleQueries: 3805
+No: 3805
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 3.728219
+NoCoverageTotalTime: 3.558712
+StateChecked: ‡qÂk;V
+FaultSolvingTimes: ∞@l;V
+StatesForOracle: £ñl;V
+Peak memory: 689400 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 7
+DoneAvoid: 7
+PathsChecked: 7
+NoFaultPath: 7
+CacheOracle: 141903
+Coverage: 4438
+NumOracleQueries: 4438
+No: 4438
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 4.349175
+NoCoverageTotalTime: 4.146349
+StateChecked: 0"Fl;V
+FaultSolvingTimes:  }†l;V
+StatesForOracle: 
+Peak memory: 695596 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 8
+DoneAvoid: 8
+PathsChecked: 8
+NoFaultPath: 8
+CacheOracle: 162152
+Coverage: 5065
+NumOracleQueries: 5065
+No: 5065
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 4.974973
+NoCoverageTotalTime: 4.744027
+StateChecked: ê¢¶l;V
+FaultSolvingTimes:  ‡≈k;V
+StatesForOracle: Äñlm;V
+Peak memory: 703088 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 9
+DoneAvoid: 9
+PathsChecked: 9
+NoFaultPath: 9
+CacheOracle: 182414
+Coverage: 5701
+NumOracleQueries: 5701
+No: 5701
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 5.593241
+NoCoverageTotalTime: 5.333495
+StateChecked: 
+FaultSolvingTimes: Äñlm;V
+StatesForOracle: ‡ê¬m;V
+Peak memory: 708604 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 10
+DoneAvoid: 10
+PathsChecked: 10
+NoFaultPath: 10
+CacheOracle: 206452
+Coverage: 6332
+NumOracleQueries: 6332
+No: 6332
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 6.355603
+NoCoverageTotalTime: 6.067512
+StateChecked: ¿rm;V
+FaultSolvingTimes: lÃm;V
+StatesForOracle: ∞öEn;V
+Peak memory: 716984 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 11
+DoneAvoid: 11
+PathsChecked: 11
+NoFaultPath: 11
+CacheOracle: 226703
+Coverage: 6960
+NumOracleQueries: 6960
+No: 6960
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 6.974224
+NoCoverageTotalTime: 6.658130
+StateChecked: @ñ“m;V
+FaultSolvingTimes: ¿tOn;V
+StatesForOracle: ∞“•n;V
+Peak memory: 723136 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 12
+DoneAvoid: 12
+PathsChecked: 12
+NoFaultPath: 12
+CacheOracle: 247006
+Coverage: 7601
+NumOracleQueries: 7601
+No: 7601
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 7.596002
+NoCoverageTotalTime: 7.251147
+StateChecked: †|Un;V
+FaultSolvingTimes: ¿¨Øn;V
+StatesForOracle: 0`o;V
+Peak memory: 729332 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 13
+DoneAvoid: 13
+PathsChecked: 13
+NoFaultPath: 13
+CacheOracle: 267262
+Coverage: 8239
+NumOracleQueries: 8239
+No: 8239
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 8.224757
+NoCoverageTotalTime: 7.850939
+StateChecked: †Ø∂n;V
+FaultSolvingTimes: :o;V
+StatesForOracle: ∞wgo;V
+Peak memory: 735544 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 14
+DoneAvoid: 14
+PathsChecked: 14
+NoFaultPath: 14
+CacheOracle: 287536
+Coverage: 8879
+NumOracleQueries: 8879
+No: 8879
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 8.852396
+NoCoverageTotalTime: 8.450383
+StateChecked: ê@o;V
+FaultSolvingTimes: ¿Qqo;V
+StatesForOracle: ¸«o;V
+Peak memory: 741724 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 15
+DoneAvoid: 15
+PathsChecked: 15
+NoFaultPath: 15
+CacheOracle: 310622
+Coverage: 9506
+NumOracleQueries: 9506
+No: 9506
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 9.591687
+NoCoverageTotalTime: 9.161207
+StateChecked: ‡Ywo;V
+FaultSolvingTimes: 
+StatesForOracle: @9Bp;V
+Peak memory: 749532 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 16
+DoneAvoid: 16
+PathsChecked: 16
+NoFaultPath: 16
+CacheOracle: 330923
+Coverage: 10160
+NumOracleQueries: 10160
+No: 10160
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 10.230198
+NoCoverageTotalTime: 9.769445
+StateChecked: ¿◊o;V
+FaultSolvingTimes: PLp;V
+StatesForOracle: ¿W∏p;V
+Peak memory: 757124 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 17
+DoneAvoid: 17
+PathsChecked: 17
+NoFaultPath: 17
+CacheOracle: 354988
+Coverage: 10796
+NumOracleQueries: 10796
+No: 10796
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 11.003445
+NoCoverageTotalTime: 10.515746
+StateChecked: †¯Qp;V
+FaultSolvingTimes: –3¬p;V
+StatesForOracle: 
+Peak memory: 765496 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 18
+DoneAvoid: 18
+PathsChecked: 18
+NoFaultPath: 18
+CacheOracle: 375267
+Coverage: 11434
+NumOracleQueries: 11434
+No: 11434
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 11.659381
+NoCoverageTotalTime: 11.142800
+StateChecked: 0;»p;V
+FaultSolvingTimes: aEq;V
+StatesForOracle: ¿¡õq;V
+Peak memory: 771656 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 19
+DoneAvoid: 19
+PathsChecked: 19
+NoFaultPath: 19
+CacheOracle: 395504
+Coverage: 12056
+NumOracleQueries: 12056
+No: 12056
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 12.287501
+NoCoverageTotalTime: 11.743781
+StateChecked: ¿âKq;V
+FaultSolvingTimes: –õ•q;V
+StatesForOracle: ê$¸q;V
+Peak memory: 777808 KB
+--- STATS FRAME END:  ---
+--- STATS FRAME:  ---
+Status: 1
+StartStates: 1000
+Episodes: 20
+DoneAvoid: 20
+PathsChecked: 20
+NoFaultPath: 20
+CacheOracle: 415752
+Coverage: 12680
+NumOracleQueries: 12680
+No: 12680
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 12.912685
+NoCoverageTotalTime: 12.341984
+StateChecked: `«´q;V
+FaultSolvingTimes: p˛r;V
+StatesForOracle: 0™\r;V
+Peak memory: 783988 KB
+--- STATS FRAME END:  ---
+Finalizing ...
+--- STATS FRAME:  ---
+Status: 3
+StartStates: 1000
+Episodes: 20
+DoneAvoid: 20
+PathsChecked: 20
+NoFaultPath: 20
+CacheOracle: 415752
+Coverage: 12680
+NumOracleQueries: 12680
+No: 12680
+PreprocessingTime: 1.192754
+ConstructionTime: 0.088626
+SearchTime: 12.913678
+NoCoverageTotalTime: 12.341984
+StateChecked: `«´q;V
+FaultSolvingTimes: p˛r;V
+StatesForOracle: 0™\r;V
+Peak memory: 783988 KB
+--- STATS FRAME END:  ---
+
+Peak memory: 783988 KB

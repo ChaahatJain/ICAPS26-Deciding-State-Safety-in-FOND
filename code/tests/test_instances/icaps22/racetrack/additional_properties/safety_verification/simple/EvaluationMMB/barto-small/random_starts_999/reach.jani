@@ -1,0 +1,11 @@
+{
+    "exp": "car0_crashed",
+    "locations": [
+        {
+            "automaton": "map",
+            "index": 0,
+            "location": "map_car_crashed"
+        }
+    ],
+    "op": "state-condition"
+}

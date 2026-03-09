@@ -1,0 +1,1 @@
+cxx_test(successor_generation_test ${CMAKE_CURRENT_LIST_DIR}/successor_generation_test.cpp "${LIBS_TESTS}" "${INCLUDES_TESTS}")

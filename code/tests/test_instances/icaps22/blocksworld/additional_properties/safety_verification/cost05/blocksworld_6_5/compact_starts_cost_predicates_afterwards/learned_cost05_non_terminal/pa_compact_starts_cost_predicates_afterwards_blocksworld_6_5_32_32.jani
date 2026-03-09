@@ -1,0 +1,42 @@
+{
+    "properties": [
+        {
+            "expression": {
+                "file": "../../../../../../networks/blocksworld_6_5/learned_cost05_non_terminal/blocksworld_6_5_32_32.jani2nnet",
+                "objective": {
+                    "file": "objective.jani"
+                },
+                "op": "PA",
+                "predicates": {
+                    "file": "predicates/5_0.jani"
+                },
+                "reach": {
+                    "file": "reach.jani"
+                },
+                "start": {
+                    "file": "start.jani"
+                }
+            },
+            "name": "pa_model-blocksworld_6_5_prop-compact_starts_cost_predicates_afterwards_nn-blocksworld_6_5_32_32_domain_splits-5_0"
+        },
+        {
+            "expression": {
+                "file": "../../../../../../networks/blocksworld_6_5/learned_cost05_non_terminal/blocksworld_6_5_32_32.jani2nnet",
+                "objective": {
+                    "file": "objective.jani"
+                },
+                "op": "PA",
+                "predicates": {
+                    "file": "predicates/6_0.jani"
+                },
+                "reach": {
+                    "file": "reach.jani"
+                },
+                "start": {
+                    "file": "start.jani"
+                }
+            },
+            "name": "pa_model-blocksworld_6_5_prop-compact_starts_cost_predicates_afterwards_nn-blocksworld_6_5_32_32_domain_splits-6_0"
+        }
+    ]
+}

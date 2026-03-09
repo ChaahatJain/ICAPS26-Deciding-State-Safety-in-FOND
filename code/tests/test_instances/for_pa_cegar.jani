@@ -1,0 +1,109 @@
+{
+	"jani-version": 1,
+	"name": "for_pa_cegar",
+	"type": "lts",
+	"variables": [
+       
+		 {
+			        "name": "x",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 5
+			        },
+			        "initial-value": 3
+		},
+		 {
+			        "name": "y",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 5
+			        },
+			        "initial-value": 3
+		}		
+	],
+	"properties": [
+	{
+		"name": "predicate_abstraction_1",
+		"expression": {
+			"op": "PA",
+			"reach":  {"op":"state-condition", "exp": {"op":"∧", "left": {"op":"=", "left":"x", "right":3}, "right":{"op":"=", "left":"y", "right":3} } },
+			"predicates": []
+		}
+
+	},
+	{
+		"name": "predicate_abstraction_2",
+		"expression": {
+			"op": "PA",
+			"reach":  {"op":"state-condition", "exp": {"op":"∧", "left": {"op":"=", "left":"x", "right":5}, "right":{"op":"=", "left":"y", "right":4} } },
+			"predicates": []
+		}
+
+	},
+	{
+		"name": "predicate_abstraction_3",
+		"expression": {
+			"op": "PA",
+			"reach":  {"op":"state-condition", "exp": {"op":"∧", "left": {"op":"=", "left":"x", "right":5}, "right":{"op":"=", "left":"y", "right":5} } },
+			"predicates": []
+		}
+
+	}
+	],
+	"automata": [
+		{
+			"name": "automaton1",
+            "variables": [ 
+            ],
+			"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": true
+					},
+					"destinations": [
+						{
+							"location": "po0",
+							"assignments": [
+                                {
+                                "ref": "x",
+                                 "value": 5
+
+                                }
+							]
+						}
+					]
+				},
+				{
+			    	"location": "po0", 
+					"guard": {
+						"exp": true
+					},
+					"destinations": [
+						{
+							"location": "po1",
+							"assignments": [
+                                {
+                                "ref": "y",
+                                 "value": 4
+
+                                }
+							]
+						}
+					]
+				}		
+			]
+			
+		}
+	], 
+	"system": {
+		"elements": [ { "automaton": "automaton1" }]
+	}
+}
+

@@ -1,0 +1,93 @@
+{
+    "elements": [
+        16,
+        16
+    ],
+    "file": "blocksworld_8_7_16_16.nnet",
+    "filter": false,
+    "input": [
+        {
+            "automaton": null,
+            "name": "hand-empty"
+        },
+        {
+            "automaton": null,
+            "name": "table-counter"
+        },
+        {
+            "automaton": null,
+            "name": "block_0"
+        },
+        {
+            "automaton": null,
+            "name": "block_1"
+        },
+        {
+            "automaton": null,
+            "name": "block_2"
+        },
+        {
+            "automaton": null,
+            "name": "block_3"
+        },
+        {
+            "automaton": null,
+            "name": "block_4"
+        },
+        {
+            "automaton": null,
+            "name": "block_5"
+        },
+        {
+            "automaton": null,
+            "name": "block_6"
+        },
+        {
+            "automaton": null,
+            "name": "block_7"
+        },
+        {
+            "automaton": null,
+            "name": "clear_0"
+        },
+        {
+            "automaton": null,
+            "name": "clear_1"
+        },
+        {
+            "automaton": null,
+            "name": "clear_2"
+        },
+        {
+            "automaton": null,
+            "name": "clear_3"
+        },
+        {
+            "automaton": null,
+            "name": "clear_4"
+        },
+        {
+            "automaton": null,
+            "name": "clear_5"
+        },
+        {
+            "automaton": null,
+            "name": "clear_6"
+        },
+        {
+            "automaton": null,
+            "name": "clear_7"
+        }
+    ],
+    "output": [
+        "choose_table",
+        "choose_block_0",
+        "choose_block_1",
+        "choose_block_2",
+        "choose_block_3",
+        "choose_block_4",
+        "choose_block_5",
+        "choose_block_6",
+        "choose_block_7"
+    ]
+}

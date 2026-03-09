@@ -1,0 +1,286 @@
+{
+	"jani-version": 1,
+	"name": "satellite.jani",
+	"type": "lts",
+	"features": [ "derived-operators","arrays"],
+	"variables": [
+		{
+			"name": "data",
+			"type": { 
+                "kind":"array",
+                "base":                
+                    {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 1
+			        }
+                },
+			    "initial-value": {"op":"av", "elements":[0,1]}
+		},
+		{
+			"name": "send",
+			"type": { 
+                "kind":"array",
+                "base": "bool"
+                },
+			"initial-value":  {"op":"av", "elements":[false,true]}
+		},
+		{
+			"name": "aux",
+			"type": { 
+				"base": "int",
+                "kind":"bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 1
+                },
+			"initial-value":  0
+		}
+	],
+	"properties": [
+	{
+		"name": "predicate abstraction",
+		"expression": {
+			"op": "PA",
+			"predicates": [
+				{"op":"≤", "left":{"op": "aa", "exp": "data", "index":"aux"}, "right": {"op":"floor", "exp":0.1}}, {"op":"=", "left":"aux", "right":0}
+			]
+		}
+
+	}	
+	],
+	"automata": [
+		{
+			"name": "satellite",
+            "variables": [ 
+                {
+			        "name": "battery",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 5
+			        },
+			        "initial-value": 5
+		        }
+            ],
+			"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": {
+						    "op": ">",
+							"left": "battery",
+							"right": 0
+						}
+					},
+					"destinations": [
+						{
+							"location": "po0",
+							"assignments": [
+								{
+									"ref": "battery",
+									"value": {
+									          "op" : "-",
+									          "left": "battery",
+									          "right":  {"op":"ceil", "exp":0.1}
+									         }
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "base",
+					"guard": {
+						"exp": {
+						    "op": ">",
+							"left": "battery",
+							"right": 1
+						}
+					},
+					"destinations": [
+						{
+							"location": "po1",
+							"assignments": [
+								{
+									"ref": "battery",
+									"value": {
+									          "op" : "-",
+									          "left": "battery",
+									          "right": 2
+									         }
+								}
+							]
+						}
+					]
+				},		
+				{
+					"location": "po0",
+					"guard": {
+						"exp": {
+						    "op": ">",
+							"left": "battery",
+							"right": 1
+						}
+					},
+					"destinations": [
+						{
+							"location": "base",
+							"assignments": [
+								{
+									"ref": "battery",
+									"value": {
+									          "op" : "-",
+									          "left": "battery",
+									          "right": 2
+									         }
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "po1",
+					"guard": {
+						"exp": {
+						    "op": ">",
+							"left": "battery",
+							"right": "aux"
+						}
+					},
+					"destinations": [
+						{
+							"location": "base",
+							"assignments": [
+								{
+									"ref": "battery",
+									"value": {
+									          "op" : "-",
+									          "left": "battery",
+									          "right": 1
+									         }
+								}
+							]
+						}
+					]
+				},	
+				{
+					"location": "base",
+					"guard": {
+						"exp": {  
+						    "op": "<",
+							"left": "battery",
+							"right": 5
+						}
+					},
+					"destinations": [
+						{
+							"location": "base",
+							"assignments": [
+								{
+									"ref": "battery",
+									"value": {
+									          "op" : "+",
+									          "left": "battery",
+									          "right": 1
+									         }
+								}
+							]
+						}
+					]
+				},	
+				{
+					"location": "base",                    
+					"guard": {
+					    "exp": {
+					    "op": "∧",
+					    "left": {
+						    "op": "=",
+							"left": {"op": "aa", "exp": "data", "index":"aux"},
+							"right": 1
+						},
+						"right": {
+						    "op": ">",
+							"left": "battery",
+							"right": 0
+						}	
+						}
+						
+					},
+					"destinations": [
+						{
+							"location": "base",
+							"assignments": [
+								{
+									"ref": "battery",
+									"value": {
+									          "op" : "-",
+									          "left": "battery",
+									          "right": 1
+									         }
+								},
+								{
+									"ref": {"op": "aa", "exp": "data", "index":0},
+									"value": 0
+								},
+								{
+									"ref": {"op":"aa", "exp":"send", "index":"aux"},
+									"value": true
+								},
+								{
+									"ref": {"op":"aa", "exp":"send", "index": {"op": "aa", "exp": "data", "index":"aux"}},
+									"value": true
+								}
+							]
+						}
+					]
+				},	
+				{
+					"location": "po0",
+					"guard": {
+					    "exp": {
+					    "op": "∧",
+					    "left": {
+						    "op": "=",
+							"left": {"op": "aa", "exp": "data", "index":0},
+							"right": 0
+						},
+						"right": {
+						    "op": ">",
+							"left": "battery",
+							"right": 1
+						}	
+						}
+						
+					},
+					"destinations": [
+						{
+							"location": "po0",
+							"assignments": [
+								{
+									"ref": "battery",
+									"value": {
+									          "op" : "-",
+									          "left": "battery",
+									          "right": 1
+									         }
+								},
+								{
+									"ref": {"op": "aa", "exp": "data", "index":0},
+									"value": 1
+								}
+							]
+						}
+					]
+				}		
+			]
+			
+		}
+	], 
+	"system": {
+		"elements": [ { "automaton": "satellite" }]
+	}
+}

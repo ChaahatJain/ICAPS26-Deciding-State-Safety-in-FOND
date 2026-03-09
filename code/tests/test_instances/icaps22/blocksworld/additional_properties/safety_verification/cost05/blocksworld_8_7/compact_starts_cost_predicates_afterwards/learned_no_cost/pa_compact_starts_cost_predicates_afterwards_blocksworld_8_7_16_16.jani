@@ -1,0 +1,23 @@
+{
+    "properties": [
+        {
+            "expression": {
+                "file": "../../../../../../networks/blocksworld_8_7/learned_no_cost/blocksworld_8_7_16_16.jani2nnet",
+                "objective": {
+                    "file": "objective.jani"
+                },
+                "op": "PA",
+                "predicates": {
+                    "file": "predicates/8_0.jani"
+                },
+                "reach": {
+                    "file": "reach.jani"
+                },
+                "start": {
+                    "file": "start.jani"
+                }
+            },
+            "name": "pa_model-blocksworld_8_7_prop-compact_starts_cost_predicates_afterwards_nn-blocksworld_8_7_16_16_domain_splits-8_0"
+        }
+    ]
+}

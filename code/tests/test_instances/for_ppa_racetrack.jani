@@ -1,0 +1,4756 @@
+{
+  "actions": [
+    {
+      "name": "accel0_-1_-1"
+    },
+    {
+      "name": "accel0_0_-1"
+    },
+    {
+      "name": "accel0_1_-1"
+    },
+    {
+      "name": "accel0_-1_0"
+    },
+    {
+      "name": "accel0_0_0"
+    },
+    {
+      "name": "accel0_1_0"
+    },
+    {
+      "name": "accel0_-1_1"
+    },
+    {
+      "name": "accel0_0_1"
+    },
+    {
+      "name": "accel0_1_1"
+    },
+    {
+      "name": "check_if_valid"
+    },
+    {
+      "name": "is_valid"
+    },
+    {
+      "name": "passed_finish_line"
+    },
+    {
+      "name": "is_invalid"
+    },
+    {
+      "name": "exceeded_speed_limit"
+    },
+    {
+      "name": "synchronize"
+    },
+    {
+      "name": "increment_step"
+    },
+    {
+      "name": "reset"
+    },
+    {
+      "name": "tau"
+    }
+  ],
+  "automata": [
+    {
+      "edges": [
+        {
+          "action": "increment_step",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_indicator",
+                  "value": 1
+                }
+              ],
+              "location": "counter1"
+            }
+          ],
+          "location": "counter0"
+        },
+        {
+          "action": "synchronize",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_indicator",
+                  "value": 0
+                },
+                {
+                  "ref": "step_completed",
+                  "value": true
+                }
+              ],
+              "location": "counter2"
+            }
+          ],
+          "location": "counter1"
+        },
+        {
+          "action": "reset",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_completed",
+                  "value": false
+                }
+              ],
+              "location": "counter0"
+            }
+          ],
+          "location": "counter2"
+        }
+      ],
+      "initial-locations": [
+        "counter2"
+      ],
+      "locations": [
+        {
+          "name": "counter0"
+        },
+        {
+          "name": "counter1"
+        },
+        {
+          "name": "counter2"
+        }
+      ],
+      "name": "counter"
+    },
+    {
+      "edges": [
+        {
+          "action": "is_invalid",
+          "destinations": [
+            {
+              "location": "map_wait_for_trajectory"
+            }
+          ],
+          "location": "map_invalid_trajectory"
+        },
+        {
+          "action": "exceeded_speed_limit",
+          "destinations": [
+            {
+              "location": "map_wait_for_trajectory"
+            }
+          ],
+          "location": "map_exceeded_speed_limit"
+        },
+        {
+          "action": "passed_finish_line",
+          "destinations": [
+            {
+              "location": "map_wait_for_trajectory"
+            }
+          ],
+          "location": "map_trajectory_passed_goal"
+        },
+        {
+          "action": "check_if_valid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_initialize_steps"
+            }
+          ],
+          "location": "map_wait_for_trajectory"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                }
+              ],
+              "location": "map_dy_check_intersection"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dx",
+                "op": "=",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": "map_dy",
+                "op": "=",
+                "right": 0
+              }
+            }
+          },
+          "location": "map_initialize_steps"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": {
+                    "else": 1,
+                    "if": {
+                      "left": "map_dx",
+                      "op": "<",
+                      "right": 0
+                    },
+                    "op": "ite",
+                    "then": -1
+                  }
+                },
+                {
+                  "ref": "next_pos",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "map_dy",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "start_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "end_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "map_dx"
+                  }
+                },
+                {
+                  "ref": "end_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "map_dy"
+                  }
+                },
+                {
+                  "ref": "current_speed",
+                  "value": {
+                    "left": {
+                      "left": "map_dx",
+                      "op": "*",
+                      "right": "map_dx"
+                    },
+                    "op": "+",
+                    "right": {
+                      "left": "map_dy",
+                      "op": "*",
+                      "right": "map_dy"
+                    }
+                  }
+                }
+              ],
+              "location": "map_dxy_stepx_check_intersection_update_y"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": {
+                  "left": "map_dx",
+                  "op": "<",
+                  "right": 0
+                },
+                "op": "∧",
+                "right": {
+                  "left": {
+                    "left": "map_dy",
+                    "op": "<",
+                    "right": 0
+                  },
+                  "op": "∧",
+                  "right": {
+                    "left": "map_dx",
+                    "op": "≤",
+                    "right": "map_dy"
+                  }
+                }
+              },
+              "op": "∨",
+              "right": {
+                "left": {
+                  "left": {
+                    "left": "map_dx",
+                    "op": "<",
+                    "right": 0
+                  },
+                  "op": "∧",
+                  "right": {
+                    "left": {
+                      "left": 0,
+                      "op": "<",
+                      "right": "map_dy"
+                    },
+                    "op": "∧",
+                    "right": {
+                      "left": "map_dy",
+                      "op": "≤",
+                      "right": {
+                        "left": 0,
+                        "op": "-",
+                        "right": "map_dx"
+                      }
+                    }
+                  }
+                },
+                "op": "∨",
+                "right": {
+                  "left": {
+                    "left": {
+                      "left": 0,
+                      "op": "<",
+                      "right": "map_dx"
+                    },
+                    "op": "∧",
+                    "right": {
+                      "left": {
+                        "left": "map_dy",
+                        "op": "<",
+                        "right": 0
+                      },
+                      "op": "∧",
+                      "right": {
+                        "left": {
+                          "left": 0,
+                          "op": "-",
+                          "right": "map_dy"
+                        },
+                        "op": "≤",
+                        "right": "map_dx"
+                      }
+                    }
+                  },
+                  "op": "∨",
+                  "right": {
+                    "left": {
+                      "left": 0,
+                      "op": "<",
+                      "right": "map_dx"
+                    },
+                    "op": "∧",
+                    "right": {
+                      "left": {
+                        "left": 0,
+                        "op": "<",
+                        "right": "map_dy"
+                      },
+                      "op": "∧",
+                      "right": {
+                        "left": "map_dy",
+                        "op": "≤",
+                        "right": "map_dx"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_initialize_steps"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": {
+                    "else": 1,
+                    "if": {
+                      "left": "map_dy",
+                      "op": "<",
+                      "right": 0
+                    },
+                    "op": "ite",
+                    "then": -1
+                  }
+                },
+                {
+                  "ref": "next_pos",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "map_dx",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "start_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "end_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "map_dx"
+                  }
+                },
+                {
+                  "ref": "end_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "map_dy"
+                  }
+                },
+                {
+                  "ref": "current_speed",
+                  "value": {
+                    "left": {
+                      "left": "map_dx",
+                      "op": "*",
+                      "right": "map_dx"
+                    },
+                    "op": "+",
+                    "right": {
+                      "left": "map_dy",
+                      "op": "*",
+                      "right": "map_dy"
+                    }
+                  }
+                }
+              ],
+              "location": "map_dxy_stepy_check_intersection_update_x"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": {
+                  "left": "map_dx",
+                  "op": "<",
+                  "right": 0
+                },
+                "op": "∧",
+                "right": {
+                  "left": {
+                    "left": "map_dy",
+                    "op": "<",
+                    "right": 0
+                  },
+                  "op": "∧",
+                  "right": {
+                    "left": "map_dy",
+                    "op": "<",
+                    "right": "map_dx"
+                  }
+                }
+              },
+              "op": "∨",
+              "right": {
+                "left": {
+                  "left": {
+                    "left": "map_dx",
+                    "op": "<",
+                    "right": 0
+                  },
+                  "op": "∧",
+                  "right": {
+                    "left": {
+                      "left": 0,
+                      "op": "<",
+                      "right": "map_dy"
+                    },
+                    "op": "∧",
+                    "right": {
+                      "left": {
+                        "left": 0,
+                        "op": "-",
+                        "right": "map_dx"
+                      },
+                      "op": "<",
+                      "right": "map_dy"
+                    }
+                  }
+                },
+                "op": "∨",
+                "right": {
+                  "left": {
+                    "left": {
+                      "left": 0,
+                      "op": "<",
+                      "right": "map_dx"
+                    },
+                    "op": "∧",
+                    "right": {
+                      "left": {
+                        "left": "map_dy",
+                        "op": "<",
+                        "right": 0
+                      },
+                      "op": "∧",
+                      "right": {
+                        "left": "map_dx",
+                        "op": "<",
+                        "right": {
+                          "left": 0,
+                          "op": "-",
+                          "right": "map_dy"
+                        }
+                      }
+                    }
+                  },
+                  "op": "∨",
+                  "right": {
+                    "left": {
+                      "left": 0,
+                      "op": "<",
+                      "right": "map_dx"
+                    },
+                    "op": "∧",
+                    "right": {
+                      "left": {
+                        "left": 0,
+                        "op": "<",
+                        "right": "map_dy"
+                      },
+                      "op": "∧",
+                      "right": {
+                        "left": "map_dx",
+                        "op": "<",
+                        "right": "map_dy"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_initialize_steps"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": {
+                    "else": 1,
+                    "if": {
+                      "left": "map_dy",
+                      "op": "<",
+                      "right": 0
+                    },
+                    "op": "ite",
+                    "then": -1
+                  }
+                },
+                {
+                  "ref": "current_speed",
+                  "value": {
+                    "left": {
+                      "left": "map_dx",
+                      "op": "*",
+                      "right": "map_dx"
+                    },
+                    "op": "+",
+                    "right": {
+                      "left": "map_dy",
+                      "op": "*",
+                      "right": "map_dy"
+                    }
+                  }
+                }
+              ],
+              "location": "map_dy_check_intersection"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dx",
+                "op": "=",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": "map_dy",
+                "op": "≠",
+                "right": 0
+              }
+            }
+          },
+          "location": "map_initialize_steps"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": {
+                    "else": 1,
+                    "if": {
+                      "left": "map_dx",
+                      "op": "<",
+                      "right": 0
+                    },
+                    "op": "ite",
+                    "then": -1
+                  }
+                },
+                {
+                  "ref": "current_speed",
+                  "value": {
+                    "left": {
+                      "left": "map_dx",
+                      "op": "*",
+                      "right": "map_dx"
+                    },
+                    "op": "+",
+                    "right": {
+                      "left": "map_dy",
+                      "op": "*",
+                      "right": "map_dy"
+                    }
+                  }
+                }
+              ],
+              "location": "map_dx_check_intersection"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dx",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": "map_dy",
+                "op": "=",
+                "right": 0
+              }
+            }
+          },
+          "location": "map_initialize_steps"
+        },
+        {
+          "action": "is_valid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_wait_for_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": "map_dx",
+              "op": "=",
+              "right": 0
+            }
+          },
+          "location": "map_dxy_stepx_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "crash_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dx",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": 0
+                },
+                "op": "∨",
+                "right": {
+                  "left": "dim_x",
+                  "op": "≤",
+                  "right": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dxy_stepx_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "map_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "map_dx",
+                  "value": {
+                    "left": "map_dx",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "next_pos",
+                  "value": {
+                    "exp": {
+                      "left": {
+                        "left": {
+                          "left": {
+                            "left": "map_x",
+                            "op": "+",
+                            "right": "step_increment"
+                          },
+                          "op": "*",
+                          "right": {
+                            "left": {
+                              "left": "end_y",
+                              "op": "-",
+                              "right": "start_y"
+                            },
+                            "op": "/",
+                            "right": {
+                              "left": "end_x",
+                              "op": "-",
+                              "right": "start_x"
+                            }
+                          }
+                        },
+                        "op": "+",
+                        "right": {
+                          "left": "end_y",
+                          "op": "-",
+                          "right": {
+                            "left": "end_x",
+                            "op": "*",
+                            "right": {
+                              "left": {
+                                "left": "end_y",
+                                "op": "-",
+                                "right": "start_y"
+                              },
+                              "op": "/",
+                              "right": {
+                                "left": "end_x",
+                                "op": "-",
+                                "right": "start_x"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "op": "+",
+                      "right": 0.5
+                    },
+                    "op": "floor"
+                  }
+                }
+              ],
+              "location": "map_dxy_stepx_check_y_bounds"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dx",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": 0,
+                  "op": "≤",
+                  "right": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                "op": "∧",
+                "right": {
+                  "left": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": "dim_x"
+                }
+              }
+            }
+          },
+          "location": "map_dxy_stepx_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "crash_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "map_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "next_pos",
+                "op": "<",
+                "right": 0
+              },
+              "op": "∨",
+              "right": {
+                "left": "dim_y",
+                "op": "≤",
+                "right": "next_pos"
+              }
+            }
+          },
+          "location": "map_dxy_stepx_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dxy_stepx_check_intersection_update_y"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": 0,
+                "op": "≤",
+                "right": "next_pos"
+              },
+              "op": "∧",
+              "right": {
+                "left": "next_pos",
+                "op": "<",
+                "right": "dim_y"
+              }
+            }
+          },
+          "location": "map_dxy_stepx_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "map_y",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                }
+              ],
+              "location": "map_dxy_stepx_check_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": {
+                "left": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "next_pos"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 1
+                },
+                "op": "∨",
+                "right": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "next_pos"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 2
+                }
+              },
+              "op": "¬"
+            }
+          },
+          "location": "map_dxy_stepx_check_intersection_update_y"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                },
+                {
+                  "ref": "crash_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "map_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "map_x",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "next_pos"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 1
+            }
+          },
+          "location": "map_dxy_stepx_check_intersection_update_y"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                },
+                {
+                  "ref": "goal_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "goal_y",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "map_y",
+                  "value": "next_pos"
+                }
+              ],
+              "location": "map_trajectory_passed_goal"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "map_x",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "next_pos"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 2
+            }
+          },
+          "location": "map_dxy_stepx_check_intersection_update_y"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dxy_stepx_check_x_bounds"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "=",
+                "right": 0
+              },
+              "op": "∨",
+              "right": {
+                "left": "current_speed",
+                "op": "≤",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dxy_stepx_check_speed_limit"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_exceeded_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": 0,
+                "op": "<",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "<",
+                "right": "current_speed"
+              }
+            }
+          },
+          "location": "map_dxy_stepx_check_speed_limit"
+        },
+        {
+          "action": "is_valid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_wait_for_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": "map_dy",
+              "op": "=",
+              "right": 0
+            }
+          },
+          "location": "map_dxy_stepy_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "crash_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dy",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": 0
+                },
+                "op": "∨",
+                "right": {
+                  "left": "dim_y",
+                  "op": "≤",
+                  "right": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dxy_stepy_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "map_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "map_dy",
+                  "value": {
+                    "left": "map_dy",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "next_pos",
+                  "value": {
+                    "exp": {
+                      "left": {
+                        "left": {
+                          "left": {
+                            "left": "map_y",
+                            "op": "+",
+                            "right": "step_increment"
+                          },
+                          "op": "*",
+                          "right": {
+                            "left": {
+                              "left": "end_x",
+                              "op": "-",
+                              "right": "start_x"
+                            },
+                            "op": "/",
+                            "right": {
+                              "left": "end_y",
+                              "op": "-",
+                              "right": "start_y"
+                            }
+                          }
+                        },
+                        "op": "+",
+                        "right": {
+                          "left": "end_x",
+                          "op": "-",
+                          "right": {
+                            "left": "end_y",
+                            "op": "*",
+                            "right": {
+                              "left": {
+                                "left": "end_x",
+                                "op": "-",
+                                "right": "start_x"
+                              },
+                              "op": "/",
+                              "right": {
+                                "left": "end_y",
+                                "op": "-",
+                                "right": "start_y"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "op": "+",
+                      "right": 0.5
+                    },
+                    "op": "floor"
+                  }
+                }
+              ],
+              "location": "map_dxy_stepy_check_x_bounds"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dy",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": 0,
+                  "op": "≤",
+                  "right": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                "op": "∧",
+                "right": {
+                  "left": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": "dim_y"
+                }
+              }
+            }
+          },
+          "location": "map_dxy_stepy_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "map_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "crash_x",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "next_pos",
+                "op": "<",
+                "right": 0
+              },
+              "op": "∨",
+              "right": {
+                "left": "dim_x",
+                "op": "≤",
+                "right": "next_pos"
+              }
+            }
+          },
+          "location": "map_dxy_stepy_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dxy_stepy_check_intersection_update_x"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": 0,
+                "op": "≤",
+                "right": "next_pos"
+              },
+              "op": "∧",
+              "right": {
+                "left": "next_pos",
+                "op": "<",
+                "right": "dim_x"
+              }
+            }
+          },
+          "location": "map_dxy_stepy_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "map_x",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                }
+              ],
+              "location": "map_dxy_stepy_check_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": {
+                "left": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "next_pos",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 1
+                },
+                "op": "∨",
+                "right": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "next_pos",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 2
+                }
+              },
+              "op": "¬"
+            }
+          },
+          "location": "map_dxy_stepy_check_intersection_update_x"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                },
+                {
+                  "ref": "crash_x",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "map_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "next_pos",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "map_y"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 1
+            }
+          },
+          "location": "map_dxy_stepy_check_intersection_update_x"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                },
+                {
+                  "ref": "goal_x",
+                  "value": "next_pos"
+                },
+                {
+                  "ref": "goal_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "map_x",
+                  "value": "next_pos"
+                }
+              ],
+              "location": "map_trajectory_passed_goal"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "next_pos",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "map_y"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 2
+            }
+          },
+          "location": "map_dxy_stepy_check_intersection_update_x"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dxy_stepy_check_y_bounds"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "=",
+                "right": 0
+              },
+              "op": "∨",
+              "right": {
+                "left": "current_speed",
+                "op": "≤",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dxy_stepy_check_speed_limit"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_exceeded_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": 0,
+                "op": "<",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "<",
+                "right": "current_speed"
+              }
+            }
+          },
+          "location": "map_dxy_stepy_check_speed_limit"
+        },
+        {
+          "action": "is_valid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_wait_for_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": "map_dy",
+              "op": "=",
+              "right": 0
+            }
+          },
+          "location": "map_dy_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "crash_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dy",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": 0
+                },
+                "op": "∨",
+                "right": {
+                  "left": "dim_y",
+                  "op": "≤",
+                  "right": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dy_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "map_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "map_dy",
+                  "value": {
+                    "left": "map_dy",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                }
+              ],
+              "location": "map_dy_check_intersection"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dy",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": 0,
+                  "op": "≤",
+                  "right": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                "op": "∧",
+                "right": {
+                  "left": {
+                    "left": "map_y",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": "dim_y"
+                }
+              }
+            }
+          },
+          "location": "map_dy_check_y_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dy_check_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": {
+                "left": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 1
+                },
+                "op": "∨",
+                "right": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 2
+                }
+              },
+              "op": "¬"
+            }
+          },
+          "location": "map_dy_check_intersection"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                },
+                {
+                  "ref": "crash_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "map_y",
+                  "value": {
+                    "left": "map_y",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "map_x",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "map_y"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 1
+            }
+          },
+          "location": "map_dy_check_intersection"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "goal_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "goal_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_trajectory_passed_goal"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "map_x",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "map_y"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 2
+            }
+          },
+          "location": "map_dy_check_intersection"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dy_check_y_bounds"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "=",
+                "right": 0
+              },
+              "op": "∨",
+              "right": {
+                "left": "current_speed",
+                "op": "≤",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dy_check_speed_limit"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_exceeded_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": 0,
+                "op": "<",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "<",
+                "right": "current_speed"
+              }
+            }
+          },
+          "location": "map_dy_check_speed_limit"
+        },
+        {
+          "action": "is_valid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_wait_for_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": "map_dx",
+              "op": "=",
+              "right": 0
+            }
+          },
+          "location": "map_dx_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "crash_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dx",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": 0
+                },
+                "op": "∨",
+                "right": {
+                  "left": "dim_x",
+                  "op": "≤",
+                  "right": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dx_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "map_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                {
+                  "ref": "map_dx",
+                  "value": {
+                    "left": "map_dx",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                }
+              ],
+              "location": "map_dx_check_intersection"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": "map_dx",
+                "op": "≠",
+                "right": 0
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": 0,
+                  "op": "≤",
+                  "right": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  }
+                },
+                "op": "∧",
+                "right": {
+                  "left": {
+                    "left": "map_x",
+                    "op": "+",
+                    "right": "step_increment"
+                  },
+                  "op": "<",
+                  "right": "dim_x"
+                }
+              }
+            }
+          },
+          "location": "map_dx_check_x_bounds"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dx_check_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": {
+                "left": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 1
+                },
+                "op": "∨",
+                "right": {
+                  "left": {
+                    "exp": "grid",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "=",
+                  "right": 2
+                }
+              },
+              "op": "¬"
+            }
+          },
+          "location": "map_dx_check_intersection"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                },
+                {
+                  "ref": "crash_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "crash_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "map_x",
+                  "value": {
+                    "left": "map_x",
+                    "op": "-",
+                    "right": "step_increment"
+                  }
+                }
+              ],
+              "location": "map_invalid_trajectory"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "map_x",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "map_y"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 1
+            }
+          },
+          "location": "map_dx_check_intersection"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "goal_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "goal_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_trajectory_passed_goal"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "exp": "grid",
+                "index": {
+                  "left": "map_x",
+                  "op": "+",
+                  "right": {
+                    "left": 5,
+                    "op": "*",
+                    "right": "map_y"
+                  }
+                },
+                "op": "aa"
+              },
+              "op": "=",
+              "right": 2
+            }
+          },
+          "location": "map_dx_check_intersection"
+        },
+        {
+          "destinations": [
+            {
+              "location": "map_dx_check_x_bounds"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "=",
+                "right": 0
+              },
+              "op": "∨",
+              "right": {
+                "left": "current_speed",
+                "op": "≤",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              }
+            }
+          },
+          "location": "map_dx_check_speed_limit"
+        },
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "step_increment",
+                  "value": 0
+                },
+                {
+                  "ref": "start_x",
+                  "value": 0
+                },
+                {
+                  "ref": "end_x",
+                  "value": 0
+                },
+                {
+                  "ref": "start_y",
+                  "value": 0
+                },
+                {
+                  "ref": "end_y",
+                  "value": 0
+                },
+                {
+                  "ref": "next_pos",
+                  "value": 0
+                },
+                {
+                  "ref": "current_speed",
+                  "value": 0
+                }
+              ],
+              "location": "map_exceeded_speed_limit"
+            }
+          ],
+          "guard": {
+            "exp": {
+              "left": {
+                "left": 0,
+                "op": "<",
+                "right": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                }
+              },
+              "op": "∧",
+              "right": {
+                "left": {
+                  "left": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  },
+                  "op": "*",
+                  "right": {
+                    "exp": "speed_limits",
+                    "index": {
+                      "left": "map_x",
+                      "op": "+",
+                      "right": {
+                        "left": 5,
+                        "op": "*",
+                        "right": "map_y"
+                      }
+                    },
+                    "op": "aa"
+                  }
+                },
+                "op": "<",
+                "right": "current_speed"
+              }
+            }
+          },
+          "location": "map_dx_check_speed_limit"
+        }
+      ],
+      "initial-locations": [
+        "map_wait_for_trajectory"
+      ],
+      "locations": [
+        {
+          "name": "map_dx_check_intersection"
+        },
+        {
+          "name": "map_dx_check_speed_limit"
+        },
+        {
+          "name": "map_dx_check_x_bounds"
+        },
+        {
+          "name": "map_dxy_stepx_check_intersection_update_y"
+        },
+        {
+          "name": "map_dxy_stepx_check_speed_limit"
+        },
+        {
+          "name": "map_dxy_stepx_check_x_bounds"
+        },
+        {
+          "name": "map_dxy_stepx_check_y_bounds"
+        },
+        {
+          "name": "map_dxy_stepy_check_intersection_update_x"
+        },
+        {
+          "name": "map_dxy_stepy_check_speed_limit"
+        },
+        {
+          "name": "map_dxy_stepy_check_x_bounds"
+        },
+        {
+          "name": "map_dxy_stepy_check_y_bounds"
+        },
+        {
+          "name": "map_dy_check_intersection"
+        },
+        {
+          "name": "map_dy_check_speed_limit"
+        },
+        {
+          "name": "map_dy_check_y_bounds"
+        },
+        {
+          "name": "map_exceeded_speed_limit"
+        },
+        {
+          "name": "map_initialize_steps"
+        },
+        {
+          "name": "map_invalid_trajectory"
+        },
+        {
+          "name": "map_trajectory_passed_goal"
+        },
+        {
+          "name": "map_wait_for_trajectory"
+        }
+      ],
+      "name": "map",
+      "variables": [
+        {
+          "initial-value": {
+            "elements": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              1,
+              2,
+              0,
+              0,
+              0,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "op": "av"
+          },
+          "name": "grid",
+          "type": {
+            "base": {
+              "base": "int",
+              "kind": "bounded",
+              "lower-bound": 0,
+              "upper-bound": 2
+            },
+            "kind": "array"
+          }
+        },
+        {
+          "initial-value": {
+            "elements": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "op": "av"
+          },
+          "name": "speed_limits",
+          "type": {
+            "base": {
+              "base": "int",
+              "kind": "bounded",
+              "lower-bound": 0,
+              "upper-bound": 9
+            },
+            "kind": "array"
+          }
+        },
+        {
+          "initial-value": 0,
+          "name": "step_increment",
+          "type": {
+            "base": "int",
+            "kind": "bounded",
+            "lower-bound": -1,
+            "upper-bound": 1
+          }
+        },
+        {
+          "initial-value": 0,
+          "name": "next_pos",
+          "type": {
+            "base": "int",
+            "kind": "bounded",
+            "lower-bound": -5,
+            "upper-bound": 10
+          }
+        },
+        {
+          "initial-value": 0,
+          "name": "start_x",
+          "type": {
+            "base": "int",
+            "kind": "bounded",
+            "lower-bound": 0,
+            "upper-bound": 5
+          }
+        },
+        {
+          "initial-value": 0,
+          "name": "start_y",
+          "type": {
+            "base": "int",
+            "kind": "bounded",
+            "lower-bound": 0,
+            "upper-bound": 5
+          }
+        },
+        {
+          "initial-value": 0,
+          "name": "end_x",
+          "type": {
+            "base": "int",
+            "kind": "bounded",
+            "lower-bound": -10,
+            "upper-bound": 15
+          }
+        },
+        {
+          "initial-value": 0,
+          "name": "end_y",
+          "type": {
+            "base": "int",
+            "kind": "bounded",
+            "lower-bound": -10,
+            "upper-bound": 15
+          }
+        },
+        {
+          "initial-value": 0,
+          "name": "current_speed",
+          "type": {
+            "base": "int",
+            "kind": "bounded",
+            "lower-bound": 0,
+            "upper-bound": 100
+          }
+        }
+      ]
+    },
+    {
+      "edges": [
+        {
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_x",
+                  "value": 0
+                },
+                {
+                  "ref": "car0_y",
+                  "value": 2
+                },
+                {
+                  "ref": "car0_startpos_x",
+                  "value": 0
+                },
+                {
+                  "ref": "car0_startpos_y",
+                  "value": 2
+                }
+              ],
+              "location": "car0_wait_for_control"
+            }
+          ],
+          "location": "car0_choose_startpos"
+        },
+        {
+          "action": "accel0_-1_-1",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dx",
+                  "value": {
+                    "left": "car0_dx",
+                    "op": "+",
+                    "right": -1
+                  }
+                },
+                {
+                  "ref": "car0_dy",
+                  "value": {
+                    "left": "car0_dy",
+                    "op": "+",
+                    "right": -1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_-1_0",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dx",
+                  "value": {
+                    "left": "car0_dx",
+                    "op": "+",
+                    "right": -1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_-1_1",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dx",
+                  "value": {
+                    "left": "car0_dx",
+                    "op": "+",
+                    "right": -1
+                  }
+                },
+                {
+                  "ref": "car0_dy",
+                  "value": {
+                    "left": "car0_dy",
+                    "op": "+",
+                    "right": 1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_0_-1",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dy",
+                  "value": {
+                    "left": "car0_dy",
+                    "op": "+",
+                    "right": -1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_0_0",
+          "destinations": [
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_0_1",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dy",
+                  "value": {
+                    "left": "car0_dy",
+                    "op": "+",
+                    "right": 1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_1_-1",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dx",
+                  "value": {
+                    "left": "car0_dx",
+                    "op": "+",
+                    "right": 1
+                  }
+                },
+                {
+                  "ref": "car0_dy",
+                  "value": {
+                    "left": "car0_dy",
+                    "op": "+",
+                    "right": -1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_1_0",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dx",
+                  "value": {
+                    "left": "car0_dx",
+                    "op": "+",
+                    "right": 1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "accel0_1_1",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_dx",
+                  "value": {
+                    "left": "car0_dx",
+                    "op": "+",
+                    "right": 1
+                  }
+                },
+                {
+                  "ref": "car0_dy",
+                  "value": {
+                    "left": "car0_dy",
+                    "op": "+",
+                    "right": 1
+                  }
+                }
+              ],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 1,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            },
+            {
+              "assignments": [],
+              "location": "car0_send_trajectory_to_map",
+              "probability": {
+                "exp": {
+                  "left": 0,
+                  "op": "/",
+                  "right": 1
+                }
+              }
+            }
+          ],
+          "guard": {
+            "exp": {
+              "exp": "car0_crashed",
+              "op": "¬"
+            }
+          },
+          "location": "car0_wait_for_control"
+        },
+        {
+          "action": "check_if_valid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_finished",
+                  "value": false
+                },
+                {
+                  "ref": "map_x",
+                  "value": "car0_x"
+                },
+                {
+                  "ref": "map_y",
+                  "value": "car0_y"
+                },
+                {
+                  "ref": "map_dx",
+                  "value": "car0_dx"
+                },
+                {
+                  "ref": "map_dy",
+                  "value": "car0_dy"
+                }
+              ],
+              "location": "car0_wait_for_result"
+            }
+          ],
+          "location": "car0_send_trajectory_to_map"
+        },
+        {
+          "action": "is_valid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "car0_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "map_x",
+                  "value": 0
+                },
+                {
+                  "ref": "map_y",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dx",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dy",
+                  "value": 0
+                }
+              ],
+              "location": "car0_sync_step"
+            }
+          ],
+          "location": "car0_wait_for_result"
+        },
+        {
+          "action": "is_invalid",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "car0_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "car0_dx",
+                  "value": 0
+                },
+                {
+                  "ref": "car0_dy",
+                  "value": 0
+                },
+                {
+                  "ref": "map_x",
+                  "value": 0
+                },
+                {
+                  "ref": "map_y",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dx",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dy",
+                  "value": 0
+                },
+                {
+                  "ref": "car0_crashed",
+                  "value": true
+                }
+              ],
+              "location": "car0_sync_step"
+            }
+          ],
+          "location": "car0_wait_for_result"
+        },
+        {
+          "action": "passed_finish_line",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "car0_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "car0_finished",
+                  "value": true
+                },
+                {
+                  "ref": "map_x",
+                  "value": 0
+                },
+                {
+                  "ref": "map_y",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dx",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dy",
+                  "value": 0
+                }
+              ],
+              "location": "car0_sync_step"
+            }
+          ],
+          "location": "car0_wait_for_result"
+        },
+        {
+          "action": "exceeded_speed_limit",
+          "destinations": [
+            {
+              "assignments": [
+                {
+                  "ref": "car0_x",
+                  "value": "map_x"
+                },
+                {
+                  "ref": "car0_y",
+                  "value": "map_y"
+                },
+                {
+                  "ref": "map_x",
+                  "value": 0
+                },
+                {
+                  "ref": "map_y",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dx",
+                  "value": 0
+                },
+                {
+                  "ref": "map_dy",
+                  "value": 0
+                }
+              ],
+              "location": "car0_deadlocked"
+            }
+          ],
+          "location": "car0_wait_for_result"
+        },
+        {
+          "action": "increment_step",
+          "destinations": [
+            {
+              "location": "car0_sync_step"
+            }
+          ],
+          "location": "car0_sync_step"
+        },
+        {
+          "action": "synchronize",
+          "destinations": [
+            {
+              "location": "car0_wait_for_control"
+            }
+          ],
+          "location": "car0_sync_step"
+        }
+      ],
+      "initial-locations": [
+        "car0_wait_for_control"
+      ],
+      "locations": [
+        {
+          "name": "car0_choose_startpos"
+        },
+        {
+          "name": "car0_wait_for_control"
+        },
+        {
+          "name": "car0_send_trajectory_to_map"
+        },
+        {
+          "name": "car0_wait_for_result"
+        },
+        {
+          "name": "car0_sync_step"
+        },
+        {
+          "name": "car0_deadlocked"
+        }
+      ],
+      "name": "car0"
+    },
+    {
+      "edges": [
+        {
+          "action": "accel0_-1_-1",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_-1_0",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_-1_1",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_0_-1",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_0_0",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_0_1",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_1_-1",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_1_0",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        },
+        {
+          "action": "accel0_1_1",
+          "destinations": [
+            {
+              "location": "agent0_loc"
+            }
+          ],
+          "location": "agent0_loc"
+        }
+      ],
+      "initial-locations": [
+        "agent0_loc"
+      ],
+      "locations": [
+        {
+          "name": "agent0_loc"
+        }
+      ],
+      "name": "agent0"
+    }
+  ],
+  "constants": [
+    {
+      "name": "dim_x",
+      "type": "int",
+      "value": 5
+    },
+    {
+      "name": "dim_y",
+      "type": "int",
+      "value": 5
+    }
+  ],
+  "features": [
+    "state-exit-rewards",
+    "arrays"
+  ],
+  "jani-version": 1,
+  "name": "racetrack",
+  "properties": [
+    {
+      "expression": {
+        "fun": "min",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "exp": {
+            "left": true,
+            "op": "U",
+            "right": "car0_finished"
+          },
+          "op": "Pmax"
+        }
+      },
+      "name": "goal_prob"
+    },
+    {
+      "expression": {
+        "fun": "max",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "accumulate": [
+            "exit"
+          ],
+          "exp": "step_indicator",
+          "op": "Emin",
+          "reach": {
+            "left": "step_completed",
+            "op": "∧",
+            "right": "car0_finished"
+          }
+        }
+      },
+      "name": "expected_steps"
+    },
+    {
+      "expression": {
+        "fun": "min",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "exp": {
+            "left": {
+              "exp": "car0_finished",
+              "op": "¬"
+            },
+            "op": "U",
+            "right": "car0_crashed"
+          },
+          "op": "Pmin"
+        }
+      },
+      "name": "crashed_min_prob"
+    },
+    {
+      "expression": {
+        "fun": "min",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "exp": {
+            "left": {
+              "exp": "car0_finished",
+              "op": "¬"
+            },
+            "op": "U",
+            "right": "car0_crashed"
+          },
+          "op": "Pmax"
+        }
+      },
+      "name": "crashed_max_prob"
+    },
+    {
+      "expression": {
+        "fun": "min",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "exp": {
+            "left": {
+              "exp": "car0_finished",
+              "op": "¬"
+            },
+            "op": "U",
+            "right": "car0_is_deadlocked"
+          },
+          "op": "Pmin"
+        }
+      },
+      "name": "speed_exceeded_min_prob"
+    },
+    {
+      "expression": {
+        "fun": "min",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "exp": {
+            "left": {
+              "exp": "car0_finished",
+              "op": "¬"
+            },
+            "op": "U",
+            "right": "car0_is_deadlocked"
+          },
+          "op": "Pmax"
+        }
+      },
+      "name": "speed_exceeded_max_prob"
+    },
+    {
+      "expression": {
+        "fun": "min",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "exp": {
+            "left": {
+              "exp": "car0_finished",
+              "op": "¬"
+            },
+            "op": "U",
+            "right": {
+              "left": "car0_is_deadlocked",
+              "op": "∨",
+              "right": "car0_crashed"
+            }
+          },
+          "op": "Pmin"
+        }
+      },
+      "name": "deadlocked_min_prob"
+    },
+    {
+      "expression": {
+        "fun": "min",
+        "op": "filter",
+        "states": {
+          "op": "initial"
+        },
+        "values": {
+          "exp": {
+            "left": {
+              "exp": "car0_finished",
+              "op": "¬"
+            },
+            "op": "U",
+            "right": {
+              "left": "car0_is_deadlocked",
+              "op": "∨",
+              "right": "car0_crashed"
+            }
+          },
+          "op": "Pmax"
+        }
+      },
+      "name": "deadlocked_max_prob"
+    }
+  ],
+  "system": {
+    "elements": [
+      {
+        "automaton": "counter"
+      },
+      {
+        "automaton": "map"
+      },
+      {
+        "automaton": "car0"
+      },
+      {
+        "automaton": "agent0"
+      }
+    ],
+    "syncs": [
+      {
+        "result": "accel0_-1_-1",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_-1_-1",
+          "accel0_-1_-1"
+        ]
+      },
+      {
+        "result": "accel0_-1_0",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_-1_0",
+          "accel0_-1_0"
+        ]
+      },
+      {
+        "result": "accel0_-1_1",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_-1_1",
+          "accel0_-1_1"
+        ]
+      },
+      {
+        "result": "accel0_0_-1",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_0_-1",
+          "accel0_0_-1"
+        ]
+      },
+      {
+        "result": "accel0_0_0",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_0_0",
+          "accel0_0_0"
+        ]
+      },
+      {
+        "result": "accel0_0_1",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_0_1",
+          "accel0_0_1"
+        ]
+      },
+      {
+        "result": "accel0_1_-1",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_1_-1",
+          "accel0_1_-1"
+        ]
+      },
+      {
+        "result": "accel0_1_0",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_1_0",
+          "accel0_1_0"
+        ]
+      },
+      {
+        "result": "accel0_1_1",
+        "synchronise": [
+          "reset",
+          null,
+          "accel0_1_1",
+          "accel0_1_1"
+        ]
+      },
+      {
+        "result": "increment_step",
+        "synchronise": [
+          "increment_step",
+          null,
+          "increment_step",
+          null
+        ]
+      },
+      {
+        "result": "synchronize",
+        "synchronise": [
+          "synchronize",
+          null,
+          "synchronize",
+          null
+        ]
+      },
+      {
+        "result": "check_if_valid",
+        "synchronise": [
+          null,
+          "check_if_valid",
+          "check_if_valid",
+          null
+        ]
+      },
+      {
+        "result": "is_valid",
+        "synchronise": [
+          null,
+          "is_valid",
+          "is_valid",
+          null
+        ]
+      },
+      {
+        "result": "is_invalid",
+        "synchronise": [
+          null,
+          "is_invalid",
+          "is_invalid",
+          null
+        ]
+      },
+      {
+        "result": "passed_finish_line",
+        "synchronise": [
+          null,
+          "passed_finish_line",
+          "passed_finish_line",
+          null
+        ]
+      },
+      {
+        "result": "exceeded_speed_limit",
+        "synchronise": [
+          null,
+          "exceeded_speed_limit",
+          "exceeded_speed_limit",
+          null
+        ]
+      }
+    ]
+  },
+  "type": "mdp",
+  "variables": [
+    {
+      "initial-value": 0,
+      "name": "step_indicator",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": 0,
+        "upper-bound": 1
+      }
+    },
+    {
+      "initial-value": true,
+      "name": "step_completed",
+      "type": "bool"
+    },
+    {
+      "initial-value": 0,
+      "name": "map_x",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -1,
+        "upper-bound": 5
+      }
+    },
+    {
+      "initial-value": 0,
+      "name": "map_y",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -1,
+        "upper-bound": 5
+      }
+    },
+    {
+      "initial-value": 0,
+      "name": "map_dx",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -6,
+        "upper-bound": 6
+      }
+    },
+    {
+      "initial-value": 0,
+      "name": "map_dy",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -6,
+        "upper-bound": 6
+      }
+    },
+    {
+      "initial-value": -1,
+      "name": "goal_x",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -1,
+        "upper-bound": 5
+      }
+    },
+    {
+      "initial-value": -1,
+      "name": "goal_y",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -1,
+        "upper-bound": 5
+      }
+    },
+    {
+      "initial-value": -2,
+      "name": "crash_x",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -2,
+        "upper-bound": 6
+      }
+    },
+    {
+      "initial-value": -2,
+      "name": "crash_y",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -2,
+        "upper-bound": 6
+      }
+    },
+    {
+      "initial-value": -1,
+      "name": "car0_startpos_x",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -1,
+        "upper-bound": 5
+      }
+    },
+    {
+      "initial-value": -1,
+      "name": "car0_startpos_y",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -1,
+        "upper-bound": 5
+      }
+    },
+    {
+      "initial-value": 0,
+      "name": "car0_dx",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -6,
+        "upper-bound": 6
+      }
+    },
+    {
+      "initial-value": 0,
+      "name": "car0_dy",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": -6,
+        "upper-bound": 6
+      }
+    },
+    {
+      "initial-value": 0,
+      "name": "car0_x",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": 0,
+        "upper-bound": 4
+      }
+    },
+    {
+      "initial-value": 2,
+      "name": "car0_y",
+      "type": {
+        "base": "int",
+        "kind": "bounded",
+        "lower-bound": 0,
+        "upper-bound": 4
+      }
+    },
+    {
+      "initial-value": false,
+      "name": "car0_finished",
+      "type": "bool"
+    },
+    {
+      "initial-value": false,
+      "name": "car0_crashed",
+      "type": "bool"
+    },
+    {
+      "initial-value": false,
+      "name": "car0_is_deadlocked",
+      "type": "bool"
+    }
+  ]
+}

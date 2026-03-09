@@ -1,0 +1,24 @@
+[
+    "car0_crashed",
+    "car0_finished",
+    {
+        "left": 17,
+        "op": "≤",
+        "right": "car0_x"
+    },
+    {
+        "left": 6,
+        "op": "≤",
+        "right": "car0_y"
+    },
+    {
+        "left": 0,
+        "op": "≤",
+        "right": "car0_dx"
+    },
+    {
+        "left": 0,
+        "op": "≤",
+        "right": "car0_dy"
+    }
+]

@@ -1,0 +1,21 @@
+build/
+*/manual_build/
+*/build/
+
+*.o
+*.a
+*.so
+*.out
+*.exe
+*.log
+
+*.idea
+.vscode/
+.run/
+
+
+# python:
+*__pycache__
+*.egg-info
+*.venv
+*Pipfile.lock

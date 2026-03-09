@@ -1,0 +1,33 @@
+*.idea
+.vscode/
+PlaJABenchmarks
+
+/benchmarks/
+
+external_config.cmake
+include/*_config.h
+cmake-build-debug/
+cmake-build-release/
+cmake-build-debug-system/
+cmake-build-release-system/
+cmake-build-server/
+cmake-build/
+*build*/
+
+# local dependencies
+dependencies/cxxtest/
+dependencies/json/
+dependencies/libtorch/
+dependencies/Marabou/
+dependencies/pybind11/
+dependencies/z3/
+dependencies/cudd/
+dependencies/*.zip/
+dependencies/veritas/
+
+# python:
+*__pycache__
+*.egg-info
+*.venv
+*Pipfile.lock
+

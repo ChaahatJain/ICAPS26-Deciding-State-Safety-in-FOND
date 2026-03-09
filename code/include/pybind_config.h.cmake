@@ -1,0 +1,7 @@
+#ifndef CMAKE_CONFIG_H
+#define CMAKE_CONFIG_H
+
+#cmakedefine CUSTOM_SYS_PATH @CUSTOM_SYS_PATH@
+#cmakedefine ATTACK_MODULE @ATTACK_MODULE@
+
+#endif // CMAKE_CONFIG_H

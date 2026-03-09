@@ -1,0 +1,135 @@
+{
+	"jani-version": 1,
+	"name": "for_pa_cegar2",
+	"type": "lts",
+    "actions": [{"name":"label"}],
+	"variables": [
+		 {
+			        "name": "x",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": -1,
+				        "upper-bound": 5
+			        },
+			        "initial-value": 5
+		},
+		 {
+			        "name": "y",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 6
+			        },
+			        "initial-value": 4
+		},
+		{
+        			"name": "swapped",
+        			"type": "bool",
+        			"initial-value": false
+        }
+	],
+	"properties": [
+	{
+		"name": "predicate_abstraction_1",
+		"expression": {
+			"op": "PA",
+			"reach":  {"op":"state-condition", "exp": {"op":"∧", "left":{"op":"=", "left":"x", "right":5}, "right":"swapped"} },
+			"predicates": [{"op":"≤", "left": {"op":"+", "left":"x", "right":"y"}, "right":10}, {"op":"¬", "exp":"swapped"} ]
+		}
+
+	},
+	{
+        "name": "predicate_abstraction_2",
+        "expression": {
+             "op": "PA",
+             "reach":  {"op":"state-condition", "exp": {"op":"∧", "left":{"op":"=", "left":"x", "right":5}, "right":"swapped"} },
+             "predicates": [{"op":"∧", "left":{"op":"≤", "left": {"op":"+", "left": {"op":"*", "left":2, "right":"x"}, "right":"y"}, "right":10}, "right":"swapped"}]
+        }
+
+    }
+    ],
+	"automata": [
+		{
+			"name": "automaton1",
+			"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base",
+                    "action": "label",
+					"destinations": [
+						{
+							"location": "po0",
+							"assignments": [
+                                {
+                                "ref": "x",
+                                 "value": "y"
+
+                                }
+							]
+						}
+					]
+				},
+				{
+					"location": "po0",
+					"action": "label",
+					"guard": {
+						"exp": {"op":"=", "left": {"op":"+", "left":"x", "right":"y"}, "right":10}
+					},
+					"destinations": [
+						{
+							"location": "po1",
+							"assignments": []
+						}
+					]
+				}
+			]
+			
+		},
+		{
+        	"name": "automaton2",
+        	"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+        	"initial-locations": ["base"],
+        	"edges": [
+        			{
+						"location": "base",
+						"action": "label",
+						"destinations": [
+							{
+								"location": "po0",
+								"assignments": [
+									{
+                                        "ref": "y",
+                                         "value": "x"
+									}
+								]
+							}
+						]
+        			},
+        			{
+                        "location": "po0",
+                        "action": "label",
+                        "destinations": [
+                        	{
+							"location": "po1",
+							"assignments": [
+								{
+									"ref": "swapped",
+									"value": true
+								}
+							]
+							}
+						]
+					}
+        	]
+
+        }
+	], 
+	"system": {
+		"elements": [ {"automaton": "automaton1"},{"automaton": "automaton2"}],
+        "syncs": [{"synchronise":["label","label"]}]
+	}
+}
+

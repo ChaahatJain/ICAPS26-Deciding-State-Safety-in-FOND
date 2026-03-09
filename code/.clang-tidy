@@ -1,0 +1,14 @@
+Checks: >
+  -*,
+  clang-diagnostic-nonportable-include-path,
+  clang-diagnostic-unused-parameter,
+  clang-diagnostic-unused-result,
+  clang-analyzer-deadcode.DeadStores
+
+WarningsAsErrors: >
+  clang-diagnostic-nonportable-include-path
+
+HeaderFilterRegex: '.*'
+CheckOptions:
+  - key:             readability-include-order.IgnoreMainSourceFile
+    value:           'false'

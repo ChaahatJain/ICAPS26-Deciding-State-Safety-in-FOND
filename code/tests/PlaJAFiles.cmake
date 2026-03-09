@@ -1,0 +1,5 @@
+set(TESTS_SOURCES)
+
+# Utils
+include(${CMAKE_CURRENT_LIST_DIR}/utils/PlaJAFiles.cmake)
+list(APPEND TESTS_SOURCES ${TESTS_UTILS_SOURCES})

@@ -1,0 +1,421 @@
+{
+	"jani-version": 1,
+	"name": "for_pa",
+	"type": "mdp",
+    "actions": [{"name":"label"},{"name":"label_alt1"},{"name":"label_alt2"},{"name":"non_sync"},{"name":"null_sync"}],
+	"features": [ "derived-operators","arrays"],
+	"variables": [
+		{
+			"name": "x",
+			"type": {
+				"base": "int",
+				"kind": "bounded",
+				"lower-bound": -42,
+				"upper-bound": 42
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "y",
+			"type": {
+				"base": "int",
+				"kind": "bounded",
+				"lower-bound": -10,
+				"upper-bound": 10
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "z",
+			"type": {
+				"base": "int",
+				"kind": "bounded",
+				"lower-bound": -10,
+				"upper-bound": 10
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "w",
+			"type": {
+				"base": "int",
+				"kind": "bounded",
+				"lower-bound": -42,
+				"upper-bound": 42
+			},
+			"initial-value": 0
+		},		
+		{
+			"name": "A",
+			"type": { 
+                "kind":"array",
+                "base":                
+                    {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 2
+			        }
+                },
+			    "initial-value": {"op":"av", "elements":[0,0,0]}
+		},
+		{
+			"name": "A4_enabled",
+			"type": "bool",
+			"initial-value": false
+		}
+	],
+	"properties": [
+		{
+		"name": "predicate abstraction",
+		"expression": {
+			"op": "PA",
+			"predicates": [
+				"A4_enabled", 
+				{"op":"≥", "left":"x", "right":0}, {"op":"≥", "left":"y", "right":0},
+				{"op":"=", "left":"x", "right":1}, {"op":"=", "left":"y", "right":1},
+				{"op":"=", "left":{"op": "aa", "exp":"A", "index":0}, "right":1}, {"op":"=", "left":{"op": "aa", "exp":"A", "index":1}, "right":1},
+				{"op":"=", "left":"w", "right":-42}, {"op":"<", "left":"w", "right":-42},
+				{"op":"=", "left":"z", "right":0}, {"op":"=", "left":{"op": "aa", "exp":"A", "index":2}, "right":0},
+				 {"op":"<", "left":3, "right":"x"}		
+			]
+		}
+
+		}	
+	],
+	"automata": [
+		{
+			"name": "A1",
+			"locations": [{"name" : "base"}, {"name" : "loc1"}, {"name" : "loc2"},{"name" : "loc3"},{"name" : "loc4"},{"name" : "loc5"},{"name" : "loc6"},{"name" : "loc7"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+                    "action": "label",
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":{"op":"=", "left":"x", "right":0}}
+					},
+					"destinations": [
+						{
+							"location": "loc1",
+                            "probability":  {"exp":0.1},
+							"assignments": [
+								{
+									"ref":  {"op": "aa", "exp":"A", "index":"x"},
+									"value": 1
+								}
+							]
+						},
+                        {
+							"location": "loc2",
+                            "probability": {"exp":0.9},
+							"assignments": [
+								{
+									"ref": "x",
+									"value": {"op":"+", "left":"x", "right":1}
+								}
+							]
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+                    "action": "label",
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":{"op":"=", "left":"y", "right":0}}
+					},
+					"destinations": [
+						{
+							"location": "loc3",
+                            "probability":  {"exp":0.2},
+							"assignments": [
+								{
+									"ref":  {"op": "aa", "exp":"A", "index":"y"},
+									"value": 2
+								}
+							]
+						},
+                        {
+							"location": "loc4",
+                            "probability": {"exp":0.8},
+							"assignments": [
+								{
+									"ref": "w",
+									"value": {"op":"-", "left":"w", "right":1}
+								}
+							]
+						}
+					]
+				},
+				{
+			    	"location": "loc6", 
+                    "action": "label",
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":true}
+					},
+					"destinations": [
+						{
+							"location": "loc7",
+							"assignments": [
+							]
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+                    "action": "label_alt1",
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":true}
+					},
+					"destinations": [
+						{
+							"location": "loc5",
+							"assignments": [
+								{
+									"ref":   {"op": "aa", "exp":"A", "index":0},
+									"value": 1
+								},
+								{
+									"ref":   {"op": "aa", "exp":"A", "index":1},
+									"value": 1
+								}
+							]
+						}
+					]
+				}
+			]
+			
+		},
+		{
+			"name": "A_non_sync",
+			"locations": [{"name" : "base"},{"name" : "loc1"},{"name" : "loc2"},{"name": "loc3"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+                    "action": "label",
+					"destinations": [
+						{
+							"location": "loc1"
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":{"op":">", "left":"x", "right":42}}
+					},
+					"destinations": [
+						{
+							"location": "loc2"
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":{"op":"≤", "left":"x", "right":42}}
+					},
+					"destinations": [
+						{
+							"location": "loc2",
+							"assignments": [{"ref":"z", "value":1}]
+						}
+					]
+				},
+				{
+                    "location": "base",
+                    "action": "non_sync",
+					"guard": {
+						"exp": {"op":"¬", "exp":"A4_enabled"}
+					},
+                 	"destinations": [
+                 		{
+                 			"location": "loc3",
+                            "assignments": [{"ref":"z", "value":1}]
+                 	    }
+                    ]
+                },
+                {
+                    "location": "base",
+                    "action": "null_sync",
+                	"destinations": [
+                	    {
+                			"location": "loc3"
+                		}
+                	]
+                }
+			]
+			
+		},
+		{
+			"name": "A2",
+			"locations": [{"name" : "base"}, {"name" : "loc1"}, {"name" : "loc2"},{"name" : "loc3"},{"name" : "loc4"},{"name" : "loc5"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+                    "action": "label",
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":{"op":"≥", "left":"x", "right":1}}
+					},
+					"destinations": [
+						{
+							"location": "loc1",
+                            "probability":  {"exp":0.3},
+							"assignments": [
+								{
+									"ref":  {"op": "aa", "exp":"A", "index":"x"},
+									"value": 1
+								}
+							]
+						},
+                        {
+							"location": "loc2",
+                            "probability": {"exp":0.7},
+							"assignments": [
+								{
+									"ref": "y",
+									"value": {"op":"+", "left":"y", "right":1}
+								}
+							]
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+                    "action": "label",
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":{"op":"≥", "left":"y", "right":"x"}}
+					},
+					"destinations": [
+						{
+							"location": "loc3",
+                            "probability":  {"exp":0.4},
+							"assignments": [
+								{
+									"ref":  {"op": "aa", "exp":"A", "index":1},
+									"value": 2
+								}
+							]
+						},
+                        {
+							"location": "loc4",
+                            "probability": {"exp":0.6},
+							"assignments": [
+								{
+									"ref": "y",
+									"value": {"op":"-", "left":"y", "right":1}
+								}
+							]
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+                    "action": "label_alt2",
+					"guard": {
+						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":true}
+					},
+					"destinations": [
+						{
+							"location": "loc5",
+							"assignments": [
+								{
+									"ref":  "x",
+									"value": 10
+								},
+								{
+									"ref":  "y",
+									"value": 10
+								}
+							]
+						}
+					]
+				}
+			]
+			
+		},
+        {
+         		"name": "A_sync_enabled",
+         		"locations": [{"name" : "base"},{"name" : "loc1"}],
+         		"initial-locations": ["base"],
+         		"edges": [
+         				{
+         			    	"location": "base",
+                             "action": "label",
+         					"guard": {
+         						"exp": {"op":"∧", "left":{"op":"¬", "exp":"A4_enabled"}, "right":true}
+         					},
+         					"destinations": [
+         						{
+         							"location": "loc1"
+         						}
+         					]
+         				}
+         		]
+
+        },
+		{
+			"name": "A4",
+			"locations": [{"name" : "base"},{"name" : "loc1"}, {"name" : "loc2"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": {"op":"∧", "left":"A4_enabled", "right":true}
+					},
+					"destinations": [
+						{
+							"location": "loc1",
+							"assignments": [{"ref":"x", "value":{"op":"+", "left":"x", "right":1}}, {"ref":{"op": "aa", "exp":"A", "index":"x"}, "value":1} ]
+		
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": {"op":"∧", "left":"A4_enabled", "right":{"op":"∧", "left":{"op":"=", "left":{"op": "aa", "exp":"A", "index":"x"}, "right":1}, "right":{"op":"=", "left":"x", "right":42}}}
+					},
+					"destinations": [
+						{
+							"location": "loc2"
+		
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": {"op":"∧", "left":"A4_enabled", "right":true}
+					},
+					"destinations": [
+						{
+							"location": "loc1",
+							"assignments": [ {"ref":"x", "value":{"op":"+", "left":"x", "right":1}}, {"ref":{"op": "aa", "exp":"A", "index":0}, "value":"x"} ]
+		
+						}
+					]
+				},
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": {"op":"∧", "left":"A4_enabled", "right":{"op":"=", "left":{"op": "aa", "exp":"A", "index":1}, "right":3}}
+					},
+					"destinations": [
+						{
+							"location": "loc2"
+						}
+					]
+				}
+			]
+			
+		}
+	], 
+	"system": {
+		"elements": [ {"automaton": "A1"}, {"automaton": "A_non_sync"}, {"automaton": "A2"}, {"automaton": "A4" }, {"automaton": "A_sync_enabled"}],
+        "syncs": [{"synchronise":["label",null,"label",null,"label"]},{"synchronise":["label_alt1",null,"label_alt2",null,null]},{"synchronise":[null,"non_sync",null,null,null]}]
+	}
+}

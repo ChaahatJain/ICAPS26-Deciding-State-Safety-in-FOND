@@ -1,0 +1,33 @@
+{
+  "properties": [
+    {
+      "expression": {
+        "op": "PA",
+        "file": "./for_ppa_racetrack_1.nnet",
+        "predicates": [
+          {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 2
+          },
+          {
+            "left": "car0_y",
+            "op": "≤",
+            "right": 2
+          },
+          {
+            "left": "car0_dx",
+            "op": "≤",
+            "right": -1
+          },
+          {
+            "left": "car0_dy",
+            "op": "≤",
+            "right": -1
+          }
+        ]
+      },
+      "name": "c_car_2_v_car_2_relaxed"
+    }
+  ]
+}

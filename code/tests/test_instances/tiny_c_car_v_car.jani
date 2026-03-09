@@ -1,0 +1,565 @@
+{
+  "properties": [
+    {
+      "expression": {
+        "op": "PA",
+        "file": "./for_ppa_racetrack.nnet",
+        "predicates": [
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": -1
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": -1
+            }
+          }
+        ]
+      },
+      "name": "c_car_2_v_car_2"
+    },
+    {
+      "expression": {
+        "op": "PA",
+        "predicates": [
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": -3
+            }
+          },
+          {
+            "left": {
+              "left": -2,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": -3
+            }
+          },
+          {
+            "left": {
+              "left": -2,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": 1
+            }
+          }
+        ]
+      },
+      "name": "c_car_2_v_car_3"
+    },
+    {
+      "expression": {
+        "op": "PA",
+        "predicates": [
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 0
+            }
+          },
+          {
+            "left": {
+              "left": 1,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": -3
+            }
+          },
+          {
+            "left": {
+              "left": -2,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": -3
+            }
+          },
+          {
+            "left": {
+              "left": -2,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": 1
+            }
+          }
+        ]
+      },
+      "name": "c_car_23_v_car_3"
+    },
+    {
+      "expression": {
+        "op": "PA",
+        "predicates": [
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 0
+            }
+          },
+          {
+            "left": {
+              "left": 1,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": -3
+            }
+          },
+          {
+            "left": {
+              "left": -2,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": -3
+            }
+          },
+          {
+            "left": {
+              "left": -2,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": 1
+            }
+          }
+        ]
+      },
+      "name": "c_car_32_v_car_3"
+    },
+    {
+      "expression": {
+        "op": "PA",
+        "predicates": [
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 0
+            }
+          },
+          {
+            "left": {
+              "left": 1,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_x"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_x",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": 0,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 0
+            }
+          },
+          {
+            "left": {
+              "left": 1,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 1
+            }
+          },
+          {
+            "left": {
+              "left": 2,
+              "op": "≤",
+              "right": "car0_y"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_y",
+              "op": "≤",
+              "right": 4
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dx"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dx",
+              "op": "≤",
+              "right": -1
+            }
+          },
+          {
+            "left": {
+              "left": -6,
+              "op": "≤",
+              "right": "car0_dy"
+            },
+            "op": "∧",
+            "right": {
+              "left": "car0_dy",
+              "op": "≤",
+              "right": -1
+            }
+          }
+        ]
+      },
+      "name": "c_car_3_v_car_2"
+    }
+  ]
+}

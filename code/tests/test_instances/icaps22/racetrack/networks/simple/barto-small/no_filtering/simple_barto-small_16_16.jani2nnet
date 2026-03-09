@@ -1,0 +1,37 @@
+{
+  "elements": [
+    16,
+    16
+  ],
+  "file": "simple_barto-small_16_16.nnet",
+  "filter": false,
+  "input": [
+    {
+      "automaton": null,
+      "name": "car0_y"
+    },
+    {
+      "automaton": null,
+      "name": "car0_x"
+    },
+    {
+      "automaton": null,
+      "name": "car0_dy"
+    },
+    {
+      "automaton": null,
+      "name": "car0_dx"
+    }
+  ],
+  "output": [
+    "accel0_-1_-1",
+    "accel0_-1_0",
+    "accel0_-1_1",
+    "accel0_0_-1",
+    "accel0_0_0",
+    "accel0_0_1",
+    "accel0_1_-1",
+    "accel0_1_0",
+    "accel0_1_1"
+  ]
+}

@@ -1,0 +1,53 @@
+// This file document the Jani2NNet format.
+// While NNet is an neural network encoding (https://github.com/sisl/nnet),
+// Jani2NNet specifies the meaning of the neural networks's I/O with respect to a JANI model (http://www.jani-spec.org/).
+// Jani2NNet is a JSON format.
+// The documentation follows the JANI specification style (https://docs.google.com/document/d/1BDQIzPBtscxJFFlDUEPIo8ivKHgXT8_X6hz5quq7jK0/edit?usp=sharing).
+
+{
+        "file": String, // path to the actual neural network in NNet format (https://github.com/sisl/nnet) relative to Jani2NNet-file
+        "?torch-file": String, // file to the actual neural network in torch format (https://pytorch.org/) relative to Jani2NNet-file (optionally)
+        "?filter": Bool, // "true" iff applicability filtering is applied, otherwise "false"
+        "input": [InputFeatureToJani], // for each input neuron in ascending order of the neuron indexes a structure indicating the corresponding state variable (index) in the jani model,
+                                       // i.e., an automaton location, a (value) variable, or the index of an array variable
+                                       // for location variables the input layer values are the index values according to the respective "locations" array in the JANI model
+        "elements": [Int], // the hidden layer sizes
+        "output": [ActionLabel] // for each output neuron in ascending order of the neuron indexes a structure indicating the corresponding action (label) in the JANI model
+}
+
+var InputFeatureToJani = schema([InputFeatureToLocation, InputFeatureToValueVariable, InputFeatureToArrayVariable])
+
+var InputFeatureToLocation = AutomatonInstance
+
+var InputFeatureToValueVariable = schema[{
+  "name": String // variable name
+  "automaton": schema([AutomatonInstance, null]) // the automaton instance or null if global
+  }]
+
+var InputFeatureToArrayVariable = schema[{
+  "name": String // variable name
+  "index": Int // the specific index of the array variable
+  "automaton": schema([AutomatonInstance, null]) // the automaton instance or null if global
+  }]
+
+var AutomatonInstance = schema({
+    "name": String // name of the automaton
+    "index": Int // index of the automaton in the model composition
+})
+
+var ActionLabel = String
+
+
+
+// deprecated structures
+
+var ActionOperatorStructure = schema( {
+  "index": schema([Int, null]) // null for non-sync operators, otherwise sync index
+  "edges": [Edge] // the participating edges
+}
+)
+
+var Edge = schema[{
+    "automaton": AutomatonInstance
+    "index": Int // index of the edge in the automaton description
+}]

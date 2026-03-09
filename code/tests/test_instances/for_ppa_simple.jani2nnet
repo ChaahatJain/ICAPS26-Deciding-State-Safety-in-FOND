@@ -1,0 +1,6 @@
+{
+  "file": "./for_ppa_simple.nnet",
+  "input": [{"automaton": null, "name": "x"}],
+  "elements": [1],
+  "output": ["label1", "label2", "label3"]
+}

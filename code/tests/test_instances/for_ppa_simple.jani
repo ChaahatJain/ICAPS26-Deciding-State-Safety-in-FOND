@@ -1,0 +1,103 @@
+{
+	"jani-version": 1,
+	"name": "for_pa",
+	"type": "mdp",
+	"features": [ "derived-operators", "arrays"],
+	"actions": [{"name": "label1"}, {"name": "label2"}, {"name": "label3"}],
+	"variables": [
+		{
+			"name": "x",
+			"type": {
+				"base": "int",
+				"kind": "bounded",
+				"lower-bound": -4,
+				"upper-bound": 4
+			},
+			"initial-value": 0
+		},
+		{
+			"name": "A",
+			"type": { 
+                "kind":"array",
+                "base":                
+                    {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 2
+			        }
+                },
+			    "initial-value": {"op":"av", "elements":[0,0,0]}
+		}
+	],
+	"properties": [
+		{
+		"name": "nn_policy_pa",
+		"expression": {
+			"op": "PA",
+			"predicates": [
+				{"op":"≥", "left":"x", "right":0}, {"op":"≥", "left":"x", "right":2}
+			],
+			"file": "./for_ppa_simple.jani2nnet"
+		}
+
+		}	
+	],
+	"automata": [
+		{
+			"name": "A1",
+			"locations": [{"name" : "base"}, {"name" : "loc1"}, {"name" : "loc2"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base",
+					"action": "label1",
+					"guard": {
+						"exp": {"op":"≥", "left":"x", "right":0}
+					},
+					"destinations": [
+						{
+							"location": "loc1",
+							"assignments": [
+								{
+									"ref":  "x",
+									"value": 1
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "base",
+					"action": "label2",
+					"guard": {
+						"exp": {"op":"≥", "left":"x", "right": 3}
+					},
+					"destinations": [
+						{
+							"location": "loc2",
+							"assignments": [
+							]
+						}
+					]
+				},
+				{
+					"location": "loc2",
+					"action": "label3",
+					"destinations": [
+						{
+							"location": "loc2",
+							"assignments": [
+							]
+						}
+					]
+				}
+			]
+			
+		}
+	], 
+	"system": {
+		"elements": [ {"automaton": "A1"}],
+		"syncs": [{"synchronise": ["label1"], "result": "label1"}, {"synchronise": ["label2"], "result": "label2"}, {"synchronise": ["label3"], "result": "label3"}]
+	}
+}

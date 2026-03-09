@@ -1,0 +1,23 @@
+{
+    "properties": [
+        {
+            "expression": {
+                "file": "../../../../../../networks/simple/barto-small/no_filtering/simple_barto-small_16_16.jani2nnet",
+                "objective": {
+                  "file": "objective.jani"
+                },
+                "op": "PA",
+              "predicates": {
+                "file": "predicates/1_1_1_1.jani"
+              },
+              "reach": {
+                "file": "reach.jani"
+              },
+              "start": {
+                "file": "start.jani"
+              }
+            },
+            "name": "pa_model_version-simple_map-barto-small_prop-random_starts_999_nn-simple_barto-small_16_16_domain_splits-1_1_1_1"
+        }
+    ]
+}

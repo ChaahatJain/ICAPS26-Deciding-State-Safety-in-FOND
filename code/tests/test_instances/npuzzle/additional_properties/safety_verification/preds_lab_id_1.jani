@@ -1,0 +1,1127 @@
+{
+    "properties": [
+        {
+            "expression": {
+                "op": "PA",
+                "predicates": [
+                    {
+                        "left": "tile_3",
+                        "op": "≥",
+                        "right": 8
+                    },
+                    {
+                        "left": "tile_3",
+                        "op": "≥",
+                        "right": 7
+                    },
+                    {
+                        "left": "empty",
+                        "op": "≥",
+                        "right": 8
+                    },
+                    {
+                        "left": "empty",
+                        "op": "≥",
+                        "right": 7
+                    },
+                    {
+                        "left": "tile_3",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "cost_tile_1",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "cost_tile_2",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "cost_tile_3",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "cost_tile_4",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "cost_tile_5",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "cost_tile_6",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "cost_tile_7",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "cost_tile_8",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_1",
+                        "op": "≥",
+                        "right": 4
+                    },
+                    {
+                        "left": "tile_2",
+                        "op": "≥",
+                        "right": 4
+                    },
+                    {
+                        "left": "tile_4",
+                        "op": "≥",
+                        "right": 4
+                    },
+                    {
+                        "left": "tile_5",
+                        "op": "≥",
+                        "right": 4
+                    },
+                    {
+                        "left": "tile_6",
+                        "op": "≥",
+                        "right": 4
+                    },
+                    {
+                        "left": "tile_7",
+                        "op": "≥",
+                        "right": 4
+                    },
+                    {
+                        "left": "tile_8",
+                        "op": "≥",
+                        "right": 4
+                    },
+                    {
+                        "left": "tile_1",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_2",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_4",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_5",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_6",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_7",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_8",
+                        "op": "≥",
+                        "right": 1
+                    },
+                    {
+                        "left": "tile_1",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "tile_2",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "tile_4",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "tile_5",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "tile_6",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "tile_7",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "tile_8",
+                        "op": "≥",
+                        "right": 6
+                    },
+                    {
+                        "left": "tile_1",
+                        "op": "≥",
+                        "right": 2
+                    },
+                    {
+                        "left": "tile_2",
+                        "op": "≥",
+                        "right": 2
+                    },
+                    {
+                        "left": "tile_4",
+                        "op": "≥",
+                        "right": 2
+                    },
+                    {
+                        "left": "tile_5",
+                        "op": "≥",
+                        "right": 2
+                    },
+                    {
+                        "left": "tile_6",
+                        "op": "≥",
+                        "right": 2
+                    },
+                    {
+                        "left": "tile_7",
+                        "op": "≥",
+                        "right": 2
+                    },
+                    {
+                        "left": "tile_8",
+                        "op": "≥",
+                        "right": 2
+                    },
+                    {
+                        "left": "tile_4",
+                        "op": "≥",
+                        "right": 3
+                    },
+                    {
+                        "left": "tile_5",
+                        "op": "≥",
+                        "right": 5
+                    },
+                    {
+                        "left": "tile_7",
+                        "op": "≥",
+                        "right": 3
+                    },
+                    {
+                        "left": "tile_8",
+                        "op": "≥",
+                        "right": 5
+                    },
+                    {
+                        "left": "tile_5",
+                        "op": "≥",
+                        "right": 3
+                    },
+                    {
+                        "left": "tile_7",
+                        "op": "≥",
+                        "right": 5
+                    },
+                    {
+                        "left": "tile_1",
+                        "op": "≥",
+                        "right": 3
+                    },
+                    {
+                        "left": {
+                            "left": "empty",
+                            "op": "+",
+                            "right": {
+                                "left": -1,
+                                "op": "*",
+                                "right": "tile_6"
+                            }
+                        },
+                        "op": "≥",
+                        "right": -1
+                    },
+                    {
+                        "left": {
+                            "left": "empty",
+                            "op": "+",
+                            "right": {
+                                "left": -1,
+                                "op": "*",
+                                "right": "tile_8"
+                            }
+                        },
+                        "op": "≥",
+                        "right": -1
+                    },
+                    {
+                        "left": {
+                            "left": "empty",
+                            "op": "+",
+                            "right": {
+                                "left": -1,
+                                "op": "*",
+                                "right": "tile_6"
+                            }
+                        },
+                        "op": "≥",
+                        "right": -3
+                    },
+                    {
+                        "left": "tile_6",
+                        "op": "≥",
+                        "right": 8
+                    },
+                    {
+                        "left": "tile_6",
+                        "op": "≥",
+                        "right": 7
+                    }
+                ],
+                "reach": {
+                    "exp": {
+                        "left": "tile_3",
+                        "op": "=",
+                        "right": 7
+                    },
+                    "op": "state-condition"
+                },
+                "start": {
+                    "exp": {
+                        "left": {
+                            "left": {
+                                "left": "empty",
+                                "op": "+",
+                                "right": {
+                                    "left": -1,
+                                    "op": "*",
+                                    "right": "tile_1"
+                                }
+                            },
+                            "op": "≠",
+                            "right": 0
+                        },
+                        "op": "∧",
+                        "right": {
+                            "left": {
+                                "left": {
+                                    "left": "empty",
+                                    "op": "+",
+                                    "right": {
+                                        "left": -1,
+                                        "op": "*",
+                                        "right": "tile_2"
+                                    }
+                                },
+                                "op": "≠",
+                                "right": 0
+                            },
+                            "op": "∧",
+                            "right": {
+                                "left": {
+                                    "left": {
+                                        "left": "empty",
+                                        "op": "+",
+                                        "right": {
+                                            "left": -1,
+                                            "op": "*",
+                                            "right": "tile_3"
+                                        }
+                                    },
+                                    "op": "≠",
+                                    "right": 0
+                                },
+                                "op": "∧",
+                                "right": {
+                                    "left": {
+                                        "left": {
+                                            "left": "empty",
+                                            "op": "+",
+                                            "right": {
+                                                "left": -1,
+                                                "op": "*",
+                                                "right": "tile_4"
+                                            }
+                                        },
+                                        "op": "≠",
+                                        "right": 0
+                                    },
+                                    "op": "∧",
+                                    "right": {
+                                        "left": {
+                                            "left": {
+                                                "left": "empty",
+                                                "op": "+",
+                                                "right": {
+                                                    "left": -1,
+                                                    "op": "*",
+                                                    "right": "tile_5"
+                                                }
+                                            },
+                                            "op": "≠",
+                                            "right": 0
+                                        },
+                                        "op": "∧",
+                                        "right": {
+                                            "left": {
+                                                "left": {
+                                                    "left": "empty",
+                                                    "op": "+",
+                                                    "right": {
+                                                        "left": -1,
+                                                        "op": "*",
+                                                        "right": "tile_6"
+                                                    }
+                                                },
+                                                "op": "≠",
+                                                "right": 0
+                                            },
+                                            "op": "∧",
+                                            "right": {
+                                                "left": {
+                                                    "left": {
+                                                        "left": "empty",
+                                                        "op": "+",
+                                                        "right": {
+                                                            "left": -1,
+                                                            "op": "*",
+                                                            "right": "tile_7"
+                                                        }
+                                                    },
+                                                    "op": "≠",
+                                                    "right": 0
+                                                },
+                                                "op": "∧",
+                                                "right": {
+                                                    "left": {
+                                                        "left": {
+                                                            "left": "empty",
+                                                            "op": "+",
+                                                            "right": {
+                                                                "left": -1,
+                                                                "op": "*",
+                                                                "right": "tile_8"
+                                                            }
+                                                        },
+                                                        "op": "≠",
+                                                        "right": 0
+                                                    },
+                                                    "op": "∧",
+                                                    "right": {
+                                                        "left": {
+                                                            "left": {
+                                                                "left": "tile_1",
+                                                                "op": "+",
+                                                                "right": {
+                                                                    "left": -1,
+                                                                    "op": "*",
+                                                                    "right": "tile_2"
+                                                                }
+                                                            },
+                                                            "op": "≠",
+                                                            "right": 0
+                                                        },
+                                                        "op": "∧",
+                                                        "right": {
+                                                            "left": {
+                                                                "left": {
+                                                                    "left": "tile_1",
+                                                                    "op": "+",
+                                                                    "right": {
+                                                                        "left": -1,
+                                                                        "op": "*",
+                                                                        "right": "tile_3"
+                                                                    }
+                                                                },
+                                                                "op": "≠",
+                                                                "right": 0
+                                                            },
+                                                            "op": "∧",
+                                                            "right": {
+                                                                "left": {
+                                                                    "left": {
+                                                                        "left": "tile_1",
+                                                                        "op": "+",
+                                                                        "right": {
+                                                                            "left": -1,
+                                                                            "op": "*",
+                                                                            "right": "tile_4"
+                                                                        }
+                                                                    },
+                                                                    "op": "≠",
+                                                                    "right": 0
+                                                                },
+                                                                "op": "∧",
+                                                                "right": {
+                                                                    "left": {
+                                                                        "left": {
+                                                                            "left": "tile_1",
+                                                                            "op": "+",
+                                                                            "right": {
+                                                                                "left": -1,
+                                                                                "op": "*",
+                                                                                "right": "tile_5"
+                                                                            }
+                                                                        },
+                                                                        "op": "≠",
+                                                                        "right": 0
+                                                                    },
+                                                                    "op": "∧",
+                                                                    "right": {
+                                                                        "left": {
+                                                                            "left": {
+                                                                                "left": "tile_1",
+                                                                                "op": "+",
+                                                                                "right": {
+                                                                                    "left": -1,
+                                                                                    "op": "*",
+                                                                                    "right": "tile_6"
+                                                                                }
+                                                                            },
+                                                                            "op": "≠",
+                                                                            "right": 0
+                                                                        },
+                                                                        "op": "∧",
+                                                                        "right": {
+                                                                            "left": {
+                                                                                "left": {
+                                                                                    "left": "tile_1",
+                                                                                    "op": "+",
+                                                                                    "right": {
+                                                                                        "left": -1,
+                                                                                        "op": "*",
+                                                                                        "right": "tile_7"
+                                                                                    }
+                                                                                },
+                                                                                "op": "≠",
+                                                                                "right": 0
+                                                                            },
+                                                                            "op": "∧",
+                                                                            "right": {
+                                                                                "left": {
+                                                                                    "left": {
+                                                                                        "left": "tile_1",
+                                                                                        "op": "+",
+                                                                                        "right": {
+                                                                                            "left": -1,
+                                                                                            "op": "*",
+                                                                                            "right": "tile_8"
+                                                                                        }
+                                                                                    },
+                                                                                    "op": "≠",
+                                                                                    "right": 0
+                                                                                },
+                                                                                "op": "∧",
+                                                                                "right": {
+                                                                                    "left": {
+                                                                                        "left": {
+                                                                                            "left": "tile_2",
+                                                                                            "op": "+",
+                                                                                            "right": {
+                                                                                                "left": -1,
+                                                                                                "op": "*",
+                                                                                                "right": "tile_3"
+                                                                                            }
+                                                                                        },
+                                                                                        "op": "≠",
+                                                                                        "right": 0
+                                                                                    },
+                                                                                    "op": "∧",
+                                                                                    "right": {
+                                                                                        "left": {
+                                                                                            "left": {
+                                                                                                "left": "tile_2",
+                                                                                                "op": "+",
+                                                                                                "right": {
+                                                                                                    "left": -1,
+                                                                                                    "op": "*",
+                                                                                                    "right": "tile_4"
+                                                                                                }
+                                                                                            },
+                                                                                            "op": "≠",
+                                                                                            "right": 0
+                                                                                        },
+                                                                                        "op": "∧",
+                                                                                        "right": {
+                                                                                            "left": {
+                                                                                                "left": {
+                                                                                                    "left": "tile_2",
+                                                                                                    "op": "+",
+                                                                                                    "right": {
+                                                                                                        "left": -1,
+                                                                                                        "op": "*",
+                                                                                                        "right": "tile_5"
+                                                                                                    }
+                                                                                                },
+                                                                                                "op": "≠",
+                                                                                                "right": 0
+                                                                                            },
+                                                                                            "op": "∧",
+                                                                                            "right": {
+                                                                                                "left": {
+                                                                                                    "left": {
+                                                                                                        "left": "tile_2",
+                                                                                                        "op": "+",
+                                                                                                        "right": {
+                                                                                                            "left": -1,
+                                                                                                            "op": "*",
+                                                                                                            "right": "tile_6"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "op": "≠",
+                                                                                                    "right": 0
+                                                                                                },
+                                                                                                "op": "∧",
+                                                                                                "right": {
+                                                                                                    "left": {
+                                                                                                        "left": {
+                                                                                                            "left": "tile_2",
+                                                                                                            "op": "+",
+                                                                                                            "right": {
+                                                                                                                "left": -1,
+                                                                                                                "op": "*",
+                                                                                                                "right": "tile_7"
+                                                                                                            }
+                                                                                                        },
+                                                                                                        "op": "≠",
+                                                                                                        "right": 0
+                                                                                                    },
+                                                                                                    "op": "∧",
+                                                                                                    "right": {
+                                                                                                        "left": {
+                                                                                                            "left": {
+                                                                                                                "left": "tile_2",
+                                                                                                                "op": "+",
+                                                                                                                "right": {
+                                                                                                                    "left": -1,
+                                                                                                                    "op": "*",
+                                                                                                                    "right": "tile_8"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "op": "≠",
+                                                                                                            "right": 0
+                                                                                                        },
+                                                                                                        "op": "∧",
+                                                                                                        "right": {
+                                                                                                            "left": {
+                                                                                                                "left": {
+                                                                                                                    "left": "tile_3",
+                                                                                                                    "op": "+",
+                                                                                                                    "right": {
+                                                                                                                        "left": -1,
+                                                                                                                        "op": "*",
+                                                                                                                        "right": "tile_4"
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                "op": "≠",
+                                                                                                                "right": 0
+                                                                                                            },
+                                                                                                            "op": "∧",
+                                                                                                            "right": {
+                                                                                                                "left": {
+                                                                                                                    "left": {
+                                                                                                                        "left": "tile_3",
+                                                                                                                        "op": "+",
+                                                                                                                        "right": {
+                                                                                                                            "left": -1,
+                                                                                                                            "op": "*",
+                                                                                                                            "right": "tile_5"
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    "op": "≠",
+                                                                                                                    "right": 0
+                                                                                                                },
+                                                                                                                "op": "∧",
+                                                                                                                "right": {
+                                                                                                                    "left": {
+                                                                                                                        "left": {
+                                                                                                                            "left": "tile_3",
+                                                                                                                            "op": "+",
+                                                                                                                            "right": {
+                                                                                                                                "left": -1,
+                                                                                                                                "op": "*",
+                                                                                                                                "right": "tile_6"
+                                                                                                                            }
+                                                                                                                        },
+                                                                                                                        "op": "≠",
+                                                                                                                        "right": 0
+                                                                                                                    },
+                                                                                                                    "op": "∧",
+                                                                                                                    "right": {
+                                                                                                                        "left": {
+                                                                                                                            "left": {
+                                                                                                                                "left": "tile_3",
+                                                                                                                                "op": "+",
+                                                                                                                                "right": {
+                                                                                                                                    "left": -1,
+                                                                                                                                    "op": "*",
+                                                                                                                                    "right": "tile_7"
+                                                                                                                                }
+                                                                                                                            },
+                                                                                                                            "op": "≠",
+                                                                                                                            "right": 0
+                                                                                                                        },
+                                                                                                                        "op": "∧",
+                                                                                                                        "right": {
+                                                                                                                            "left": {
+                                                                                                                                "left": {
+                                                                                                                                    "left": "tile_3",
+                                                                                                                                    "op": "+",
+                                                                                                                                    "right": {
+                                                                                                                                        "left": -1,
+                                                                                                                                        "op": "*",
+                                                                                                                                        "right": "tile_8"
+                                                                                                                                    }
+                                                                                                                                },
+                                                                                                                                "op": "≠",
+                                                                                                                                "right": 0
+                                                                                                                            },
+                                                                                                                            "op": "∧",
+                                                                                                                            "right": {
+                                                                                                                                "left": {
+                                                                                                                                    "left": {
+                                                                                                                                        "left": "tile_4",
+                                                                                                                                        "op": "+",
+                                                                                                                                        "right": {
+                                                                                                                                            "left": -1,
+                                                                                                                                            "op": "*",
+                                                                                                                                            "right": "tile_5"
+                                                                                                                                        }
+                                                                                                                                    },
+                                                                                                                                    "op": "≠",
+                                                                                                                                    "right": 0
+                                                                                                                                },
+                                                                                                                                "op": "∧",
+                                                                                                                                "right": {
+                                                                                                                                    "left": {
+                                                                                                                                        "left": {
+                                                                                                                                            "left": "tile_4",
+                                                                                                                                            "op": "+",
+                                                                                                                                            "right": {
+                                                                                                                                                "left": -1,
+                                                                                                                                                "op": "*",
+                                                                                                                                                "right": "tile_6"
+                                                                                                                                            }
+                                                                                                                                        },
+                                                                                                                                        "op": "≠",
+                                                                                                                                        "right": 0
+                                                                                                                                    },
+                                                                                                                                    "op": "∧",
+                                                                                                                                    "right": {
+                                                                                                                                        "left": {
+                                                                                                                                            "left": {
+                                                                                                                                                "left": "tile_4",
+                                                                                                                                                "op": "+",
+                                                                                                                                                "right": {
+                                                                                                                                                    "left": -1,
+                                                                                                                                                    "op": "*",
+                                                                                                                                                    "right": "tile_7"
+                                                                                                                                                }
+                                                                                                                                            },
+                                                                                                                                            "op": "≠",
+                                                                                                                                            "right": 0
+                                                                                                                                        },
+                                                                                                                                        "op": "∧",
+                                                                                                                                        "right": {
+                                                                                                                                            "left": {
+                                                                                                                                                "left": {
+                                                                                                                                                    "left": "tile_4",
+                                                                                                                                                    "op": "+",
+                                                                                                                                                    "right": {
+                                                                                                                                                        "left": -1,
+                                                                                                                                                        "op": "*",
+                                                                                                                                                        "right": "tile_8"
+                                                                                                                                                    }
+                                                                                                                                                },
+                                                                                                                                                "op": "≠",
+                                                                                                                                                "right": 0
+                                                                                                                                            },
+                                                                                                                                            "op": "∧",
+                                                                                                                                            "right": {
+                                                                                                                                                "left": {
+                                                                                                                                                    "left": {
+                                                                                                                                                        "left": "tile_5",
+                                                                                                                                                        "op": "+",
+                                                                                                                                                        "right": {
+                                                                                                                                                            "left": -1,
+                                                                                                                                                            "op": "*",
+                                                                                                                                                            "right": "tile_6"
+                                                                                                                                                        }
+                                                                                                                                                    },
+                                                                                                                                                    "op": "≠",
+                                                                                                                                                    "right": 0
+                                                                                                                                                },
+                                                                                                                                                "op": "∧",
+                                                                                                                                                "right": {
+                                                                                                                                                    "left": {
+                                                                                                                                                        "left": {
+                                                                                                                                                            "left": "tile_5",
+                                                                                                                                                            "op": "+",
+                                                                                                                                                            "right": {
+                                                                                                                                                                "left": -1,
+                                                                                                                                                                "op": "*",
+                                                                                                                                                                "right": "tile_7"
+                                                                                                                                                            }
+                                                                                                                                                        },
+                                                                                                                                                        "op": "≠",
+                                                                                                                                                        "right": 0
+                                                                                                                                                    },
+                                                                                                                                                    "op": "∧",
+                                                                                                                                                    "right": {
+                                                                                                                                                        "left": {
+                                                                                                                                                            "left": {
+                                                                                                                                                                "left": "tile_5",
+                                                                                                                                                                "op": "+",
+                                                                                                                                                                "right": {
+                                                                                                                                                                    "left": -1,
+                                                                                                                                                                    "op": "*",
+                                                                                                                                                                    "right": "tile_8"
+                                                                                                                                                                }
+                                                                                                                                                            },
+                                                                                                                                                            "op": "≠",
+                                                                                                                                                            "right": 0
+                                                                                                                                                        },
+                                                                                                                                                        "op": "∧",
+                                                                                                                                                        "right": {
+                                                                                                                                                            "left": {
+                                                                                                                                                                "left": {
+                                                                                                                                                                    "left": "tile_6",
+                                                                                                                                                                    "op": "+",
+                                                                                                                                                                    "right": {
+                                                                                                                                                                        "left": -1,
+                                                                                                                                                                        "op": "*",
+                                                                                                                                                                        "right": "tile_7"
+                                                                                                                                                                    }
+                                                                                                                                                                },
+                                                                                                                                                                "op": "≠",
+                                                                                                                                                                "right": 0
+                                                                                                                                                            },
+                                                                                                                                                            "op": "∧",
+                                                                                                                                                            "right": {
+                                                                                                                                                                "left": {
+                                                                                                                                                                    "left": {
+                                                                                                                                                                        "left": "tile_6",
+                                                                                                                                                                        "op": "+",
+                                                                                                                                                                        "right": {
+                                                                                                                                                                            "left": -1,
+                                                                                                                                                                            "op": "*",
+                                                                                                                                                                            "right": "tile_8"
+                                                                                                                                                                        }
+                                                                                                                                                                    },
+                                                                                                                                                                    "op": "≠",
+                                                                                                                                                                    "right": 0
+                                                                                                                                                                },
+                                                                                                                                                                "op": "∧",
+                                                                                                                                                                "right": {
+                                                                                                                                                                    "left": {
+                                                                                                                                                                        "left": {
+                                                                                                                                                                            "left": "tile_7",
+                                                                                                                                                                            "op": "+",
+                                                                                                                                                                            "right": {
+                                                                                                                                                                                "left": -1,
+                                                                                                                                                                                "op": "*",
+                                                                                                                                                                                "right": "tile_8"
+                                                                                                                                                                            }
+                                                                                                                                                                        },
+                                                                                                                                                                        "op": "≠",
+                                                                                                                                                                        "right": 0
+                                                                                                                                                                    },
+                                                                                                                                                                    "op": "∧",
+                                                                                                                                                                    "right": {
+                                                                                                                                                                        "left": {
+                                                                                                                                                                            "left": "tile_3",
+                                                                                                                                                                            "op": "≠",
+                                                                                                                                                                            "right": 7
+                                                                                                                                                                        },
+                                                                                                                                                                        "op": "∧",
+                                                                                                                                                                        "right": {
+                                                                                                                                                                            "left": {
+                                                                                                                                                                                "exp": {
+                                                                                                                                                                                    "left": {
+                                                                                                                                                                                        "left": "empty",
+                                                                                                                                                                                        "op": "=",
+                                                                                                                                                                                        "right": 8
+                                                                                                                                                                                    },
+                                                                                                                                                                                    "op": "∧",
+                                                                                                                                                                                    "right": {
+                                                                                                                                                                                        "left": {
+                                                                                                                                                                                            "left": "tile_1",
+                                                                                                                                                                                            "op": "=",
+                                                                                                                                                                                            "right": 7
+                                                                                                                                                                                        },
+                                                                                                                                                                                        "op": "∧",
+                                                                                                                                                                                        "right": {
+                                                                                                                                                                                            "left": {
+                                                                                                                                                                                                "left": "tile_2",
+                                                                                                                                                                                                "op": "=",
+                                                                                                                                                                                                "right": 6
+                                                                                                                                                                                            },
+                                                                                                                                                                                            "op": "∧",
+                                                                                                                                                                                            "right": {
+                                                                                                                                                                                                "left": {
+                                                                                                                                                                                                    "left": "tile_3",
+                                                                                                                                                                                                    "op": "=",
+                                                                                                                                                                                                    "right": 5
+                                                                                                                                                                                                },
+                                                                                                                                                                                                "op": "∧",
+                                                                                                                                                                                                "right": {
+                                                                                                                                                                                                    "left": {
+                                                                                                                                                                                                        "left": "tile_4",
+                                                                                                                                                                                                        "op": "=",
+                                                                                                                                                                                                        "right": 4
+                                                                                                                                                                                                    },
+                                                                                                                                                                                                    "op": "∧",
+                                                                                                                                                                                                    "right": {
+                                                                                                                                                                                                        "left": {
+                                                                                                                                                                                                            "left": "tile_5",
+                                                                                                                                                                                                            "op": "=",
+                                                                                                                                                                                                            "right": 3
+                                                                                                                                                                                                        },
+                                                                                                                                                                                                        "op": "∧",
+                                                                                                                                                                                                        "right": {
+                                                                                                                                                                                                            "left": {
+                                                                                                                                                                                                                "left": "tile_6",
+                                                                                                                                                                                                                "op": "=",
+                                                                                                                                                                                                                "right": 2
+                                                                                                                                                                                                            },
+                                                                                                                                                                                                            "op": "∧",
+                                                                                                                                                                                                            "right": {
+                                                                                                                                                                                                                "left": {
+                                                                                                                                                                                                                    "left": "tile_7",
+                                                                                                                                                                                                                    "op": "=",
+                                                                                                                                                                                                                    "right": 1
+                                                                                                                                                                                                                },
+                                                                                                                                                                                                                "op": "∧",
+                                                                                                                                                                                                                "right": {
+                                                                                                                                                                                                                    "left": "tile_8",
+                                                                                                                                                                                                                    "op": "=",
+                                                                                                                                                                                                                    "right": 0
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                }
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+                                                                                                                                                                                    }
+                                                                                                                                                                                },
+                                                                                                                                                                                "op": "¬"
+                                                                                                                                                                            },
+                                                                                                                                                                            "op": "∧",
+                                                                                                                                                                            "right": {
+                                                                                                                                                                                "left": {
+                                                                                                                                                                                    "left": {
+                                                                                                                                                                                        "left": "tile_1",
+                                                                                                                                                                                        "op": "+",
+                                                                                                                                                                                        "right": {
+                                                                                                                                                                                            "left": -1,
+                                                                                                                                                                                            "op": "*",
+                                                                                                                                                                                            "right": "tile_4"
+                                                                                                                                                                                        }
+                                                                                                                                                                                    },
+                                                                                                                                                                                    "op": "≤",
+                                                                                                                                                                                    "right": 0
+                                                                                                                                                                                },
+                                                                                                                                                                                "op": "∧",
+                                                                                                                                                                                "right": {
+                                                                                                                                                                                    "left": {
+                                                                                                                                                                                        "left": {
+                                                                                                                                                                                            "left": "tile_4",
+                                                                                                                                                                                            "op": "+",
+                                                                                                                                                                                            "right": {
+                                                                                                                                                                                                "left": -1,
+                                                                                                                                                                                                "op": "*",
+                                                                                                                                                                                                "right": "tile_7"
+                                                                                                                                                                                            }
+                                                                                                                                                                                        },
+                                                                                                                                                                                        "op": "≤",
+                                                                                                                                                                                        "right": 0
+                                                                                                                                                                                    },
+                                                                                                                                                                                    "op": "∧",
+                                                                                                                                                                                    "right": {
+                                                                                                                                                                                        "left": {
+                                                                                                                                                                                            "left": {
+                                                                                                                                                                                                "left": "tile_2",
+                                                                                                                                                                                                "op": "+",
+                                                                                                                                                                                                "right": {
+                                                                                                                                                                                                    "left": -1,
+                                                                                                                                                                                                    "op": "*",
+                                                                                                                                                                                                    "right": "tile_5"
+                                                                                                                                                                                                }
+                                                                                                                                                                                            },
+                                                                                                                                                                                            "op": "≤",
+                                                                                                                                                                                            "right": 0
+                                                                                                                                                                                        },
+                                                                                                                                                                                        "op": "∧",
+                                                                                                                                                                                        "right": {
+                                                                                                                                                                                            "left": {
+                                                                                                                                                                                                "left": {
+                                                                                                                                                                                                    "left": "tile_5",
+                                                                                                                                                                                                    "op": "+",
+                                                                                                                                                                                                    "right": {
+                                                                                                                                                                                                        "left": -1,
+                                                                                                                                                                                                        "op": "*",
+                                                                                                                                                                                                        "right": "tile_8"
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                },
+                                                                                                                                                                                                "op": "≤",
+                                                                                                                                                                                                "right": 0
+                                                                                                                                                                                            },
+                                                                                                                                                                                            "op": "∧",
+                                                                                                                                                                                            "right": {
+                                                                                                                                                                                                "left": {
+                                                                                                                                                                                                    "left": {
+                                                                                                                                                                                                        "left": "tile_3",
+                                                                                                                                                                                                        "op": "+",
+                                                                                                                                                                                                        "right": {
+                                                                                                                                                                                                            "left": -1,
+                                                                                                                                                                                                            "op": "*",
+                                                                                                                                                                                                            "right": "tile_6"
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    },
+                                                                                                                                                                                                    "op": "≤",
+                                                                                                                                                                                                    "right": 0
+                                                                                                                                                                                                },
+                                                                                                                                                                                                "op": "∧",
+                                                                                                                                                                                                "right": {
+                                                                                                                                                                                                    "left": {
+                                                                                                                                                                                                        "left": "cost_tile_1",
+                                                                                                                                                                                                        "op": "=",
+                                                                                                                                                                                                        "right": 0
+                                                                                                                                                                                                    },
+                                                                                                                                                                                                    "op": "∧",
+                                                                                                                                                                                                    "right": {
+                                                                                                                                                                                                        "left": {
+                                                                                                                                                                                                            "left": "cost_tile_2",
+                                                                                                                                                                                                            "op": "=",
+                                                                                                                                                                                                            "right": 0
+                                                                                                                                                                                                        },
+                                                                                                                                                                                                        "op": "∧",
+                                                                                                                                                                                                        "right": {
+                                                                                                                                                                                                            "left": {
+                                                                                                                                                                                                                "left": "cost_tile_3",
+                                                                                                                                                                                                                "op": "=",
+                                                                                                                                                                                                                "right": 0
+                                                                                                                                                                                                            },
+                                                                                                                                                                                                            "op": "∧",
+                                                                                                                                                                                                            "right": {
+                                                                                                                                                                                                                "left": {
+                                                                                                                                                                                                                    "left": "cost_tile_4",
+                                                                                                                                                                                                                    "op": "=",
+                                                                                                                                                                                                                    "right": 0
+                                                                                                                                                                                                                },
+                                                                                                                                                                                                                "op": "∧",
+                                                                                                                                                                                                                "right": {
+                                                                                                                                                                                                                    "left": {
+                                                                                                                                                                                                                        "left": "cost_tile_5",
+                                                                                                                                                                                                                        "op": "=",
+                                                                                                                                                                                                                        "right": 0
+                                                                                                                                                                                                                    },
+                                                                                                                                                                                                                    "op": "∧",
+                                                                                                                                                                                                                    "right": {
+                                                                                                                                                                                                                        "left": {
+                                                                                                                                                                                                                            "left": "cost_tile_6",
+                                                                                                                                                                                                                            "op": "=",
+                                                                                                                                                                                                                            "right": 0
+                                                                                                                                                                                                                        },
+                                                                                                                                                                                                                        "op": "∧",
+                                                                                                                                                                                                                        "right": {
+                                                                                                                                                                                                                            "left": {
+                                                                                                                                                                                                                                "left": "cost_tile_7",
+                                                                                                                                                                                                                                "op": "=",
+                                                                                                                                                                                                                                "right": 0
+                                                                                                                                                                                                                            },
+                                                                                                                                                                                                                            "op": "∧",
+                                                                                                                                                                                                                            "right": {
+                                                                                                                                                                                                                                "left": {
+                                                                                                                                                                                                                                    "left": "cost_tile_8",
+                                                                                                                                                                                                                                    "op": "=",
+                                                                                                                                                                                                                                    "right": 0
+                                                                                                                                                                                                                                },
+                                                                                                                                                                                                                                "op": "∧",
+                                                                                                                                                                                                                                "right": {
+                                                                                                                                                                                                                                    "left": "step_cost",
+                                                                                                                                                                                                                                    "op": "=",
+                                                                                                                                                                                                                                    "right": 0
+                                                                                                                                                                                                                                }
+                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                    }
+                                                                                                                                                                                                                }
+                                                                                                                                                                                                            }
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                }
+                                                                                                                                                                                            }
+                                                                                                                                                                                        }
+                                                                                                                                                                                    }
+                                                                                                                                                                                }
+                                                                                                                                                                            }
+                                                                                                                                                                        }
+                                                                                                                                                                    }
+                                                                                                                                                                }
+                                                                                                                                                            }
+                                                                                                                                                        }
+                                                                                                                                                    }
+                                                                                                                                                }
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "locations": [
+                        {
+                            "automaton": "automaton_0",
+                            "index": 0,
+                            "location": "loc_0"
+                        }
+                    ],
+                    "op": "state-condition"
+                }
+            },
+            "name": "pa_model-npuzzle_3_3_prop-compact_starts_3_domain_splits-0_14"
+        }
+    ]
+}

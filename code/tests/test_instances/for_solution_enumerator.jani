@@ -1,0 +1,115 @@
+{
+	"jani-version": 1,
+	"name": "for_pa_cegar",
+	"type": "lts",
+	"variables": [
+       
+		 {
+			        "name": "x",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 5
+			        },
+			        "initial-value": 3
+		},
+		 {
+			        "name": "y",
+			        "type": "bool",
+			        "initial-value": false
+		},
+        {
+			"name": "X",
+			"type": { 
+                "kind":"array",
+                "base":                
+                    {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 2
+			        }
+                },
+			    "initial-value": {"op":"av", "elements":[0,0]}
+		},		
+        {
+			"name": "Y",
+			"type": { 
+                "kind":"array",
+                "base":  "bool" 
+                },
+			    "initial-value": {"op":"av", "elements":[false,false,false]}
+		},
+		{
+			        "name": "unused",
+			        "type": "bool",
+			        "initial-value": false
+		}
+	],
+	"properties": [
+	{
+		"name": "predicate_abstraction_1",
+		"expression": {
+			"op": "PA",
+			"predicates":  [{"op":"∧", "left": {"op":"=", "left":"x", "right":5}, "right":"y"}, {"op":"=", "left": {"op":"aa", "exp":"X", "index":1}, "right":2}, {"op":">", "left": "x", "right":3}, {"op":"aa", "exp":"Y", "index":1}, "y"] 
+		}
+
+	}
+	],
+	"automata": [
+		{
+			"name": "automaton1",
+            "variables": [ 
+            ],
+			"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base", 
+					"guard": {
+						"exp": true
+					},
+					"destinations": [
+						{
+							"location": "po0",
+							"assignments": [
+                                {
+                                "ref": "x",
+                                 "value": 5
+                                },
+                                {
+                                "ref": "y",
+                                "value": true
+                                }
+							]
+						}
+					]
+				},
+				{
+			    	"location": "po0", 
+					"guard": {
+						"exp": true
+					},
+					"destinations": [
+						{
+							"location": "po1",
+							"assignments": [
+                                {
+                                "ref": "y",
+                                 "value": true
+
+                                }
+							]
+						}
+					]
+				}		
+			]
+			
+		}
+	], 
+	"system": {
+		"elements": [ { "automaton": "automaton1" }]
+	}
+}
+

@@ -1,0 +1,169 @@
+{
+	"jani-version": 1,
+	"name": "satellite.jani",
+	"type": "lts",
+	"features": [ "derived-operators" ],
+	"actions": [{"name": "label1"}, {"name": "label2"}, {"name": "label3"}],
+	"variables": [
+		{
+			"name": "x",
+			"type": { 
+				"base": "int",
+                "kind":"bounded",
+				        "lower-bound": -5,
+				        "upper-bound": 5
+                },
+			"initial-value":  1
+		},		
+		{
+			"name": "A",
+			"type": { 
+                "kind":"array",
+                "base":                
+                    {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": -1,
+				        "upper-bound": 4
+			        }
+                },
+			    "initial-value": {"op":"av", "elements":[0,0,0,0]}
+		},
+		{
+			"name": "y",
+			"type": "bool",
+			"initial-value": true
+		},
+		{
+			"name": "xx",
+			"type": {
+				"base": "int",
+				"kind":"bounded",
+				"lower-bound": -5,
+				"upper-bound": 0
+			},
+			"initial-value":  0
+		},
+		{
+			"name": "xxx",
+			"type": {
+				"base": "int",
+				"kind":"bounded",
+				"lower-bound": 2,
+				"upper-bound": 5
+			},
+			"initial-value":  2
+		}
+	],
+	"properties": [
+		{
+			"name": "predicate_abstraction",
+			"expression": {
+				"op": "PA",
+				"predicates": [
+					{"op":"≤", "left":1, "right": "x"},{"op":"≥", "left":{"op":"+", "left":"x", "right":"x"}, "right":4},
+					{"op":"≤",
+						"left":{"op":"+",
+							"left": {"op":"*", "left":{"op": "aa", "exp": "A", "index":1}, "right":16},
+							"right":{"op":"*", "left":-100, "right":"x"}},
+						"right": -16
+					}, { "op":"¬", "exp":"y"}
+				],
+				"file": "./for_nn_sat.jani2nnet"
+			}
+
+		},
+		{
+			"name": "predicate_abstraction_unused_vars",
+			"expression": {
+				"op": "PA",
+				"predicates": [
+					{"op":"≤", "left":1, "right": "x"},{"op":"≥", "left":{"op":"+", "left":"x", "right":"x"}, "right":4},
+					{"op":"≤",
+					"left":{"op":"+",
+							"left": {"op":"*", "left":{"op": "aa", "exp": "A", "index":1}, "right":16},
+							"right":{"op":"*", "left":-100, "right":"x"}},
+					"right": -16
+					}, {"op":"¬", "exp":"y"}
+				],
+				"file": "./for_nn_sat_with_unused_vars.jani2nnet"
+			}
+		}
+	],
+	"automata": [
+		{
+			"name": "satellite",
+			"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+			"initial-locations": ["base"],
+			"edges": [
+				{
+			    	"location": "base",
+					"action": "label1",
+					"guard": {
+						"exp": {
+							"op":"≤",
+							"left": 1,
+							"right": {"op": "+", "left":"xx", "right": "x"}
+						}
+					},
+					"destinations": [
+						{
+							"location": "po0",
+							"assignments": [
+								{
+									"ref": "x",
+									"value": "xxx"
+								}
+							]
+						}
+					]
+				},
+				{
+			    	"location": "base",
+					"action": "label2",
+					"guard": {
+						"exp": {
+						    "op": "=",
+							"left": "x",
+							"right": 2
+						}
+					},
+					"destinations": [
+						{
+							"location": "po1",
+							"assignments": [
+								{
+									"ref": {"op": "aa", "exp": "A", "index": 2},
+									"value": 2
+								}
+							]
+						}
+					]
+				},
+				{
+					"location": "po1",
+					"action": "label3",
+					"guard": {
+						"exp": "y"
+					},
+					"destinations": [
+						{
+							"location": "po1",
+							"assignments": [
+								{
+									"ref": "y",
+									"value": true
+								}
+							]
+						}
+					]
+				}
+			]
+			
+		}
+	], 
+	"system": {
+		"elements": [ { "automaton": "satellite" }],
+		"syncs": [{"synchronise": ["label1"], "result": "label1"}, {"synchronise": ["label2"], "result": "label2"}, {"synchronise": ["label3"], "result": "label3"}]
+	}
+}

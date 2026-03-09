@@ -1,0 +1,4 @@
+benchmarks/
+data/
+*.zip
+code/build/

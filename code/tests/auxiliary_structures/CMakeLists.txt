@@ -1,0 +1,5 @@
+cxx_test(expression_set_test ${CMAKE_CURRENT_LIST_DIR}/expression_set_test.cpp "${LIBS_TESTS}" "${INCLUDES_TESTS}")
+cxx_test(to_normalform_test ${CMAKE_CURRENT_LIST_DIR}/to_normalform_test.cpp "${LIBS_TESTS}" "${INCLUDES_TESTS}")
+cxx_test(variable_substitution_test ${CMAKE_CURRENT_LIST_DIR}/variable_substitution_test.cpp "${LIBS_TESTS}" "${INCLUDES_TESTS}")
+cxx_test(rng_test ${CMAKE_CURRENT_LIST_DIR}/rng_test.cpp "${LIBS_TESTS}" "${INCLUDES_TESTS}")
+# cxx_test(dummy_test ${CMAKE_CURRENT_LIST_DIR}/dummy_test.cpp "${LIBS_TESTS}" "${INCLUDES_TESTS}")

@@ -1,0 +1,119 @@
+{
+	"jani-version": 1,
+	"name": "for_pa_cegar3",
+	"type": "lts",
+	"variables": [
+		 {
+			        "name": "x",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 16
+			        },
+			        "initial-value": 5
+		},
+		 {
+			        "name": "y",
+			        "type": {
+				        "base": "int",
+				        "kind": "bounded",
+				        "lower-bound": 0,
+				        "upper-bound": 16
+			        },
+			        "initial-value": 0
+		},
+		{
+        			"name": "unused",
+        			"type": "bool",
+        			"initial-value": false
+        }
+	],
+	"properties": [
+	{
+		"name": "predicate_abstraction_1",
+		"expression": {
+			"op": "PA",
+			"reach": {"op":"state-condition", "exp": {"op":"=", "left":"x", "right":6} },
+			"predicates": [{"op":"<", "left":{"op":"+", "left":"x", "right":"y"}, "right":6}]
+		}
+
+	},
+	{
+    	"name": "predicate_abstraction_2",
+    	"expression": {
+    			"op": "PA",
+    			"reach": {
+					"op":"state-condition",
+					"exp": {"op":"=", "left":"x", "right":6},
+					"locations": [
+						{
+							"automaton": "automaton1",
+							"index": 0,
+							"location": "po1"
+						}
+					]
+				},
+    			"predicates": [{"op":"<", "left":{"op":"+", "left":"x", "right":"y"}, "right":6}, {"op":"=", "left":"x", "right":6}]
+    	}
+
+    }
+    ],
+	"automata": [
+        {
+            "name": "automaton1",
+        	"locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+        	"initial-locations": ["base"],
+        	"edges": [
+        				{
+        			    "location": "base",
+        				    "guard": {
+        						"exp": {"op":"<", "left":{"op":"+", "left":"x", "right":"x"}, "right": 6}
+        					},
+        					"destinations": [
+        						{
+        							"location": "po0",
+        							"assignments": [
+                                        {
+                                        "ref": "y",
+                                         "value": "x"
+
+                                        }
+        							]
+        						}
+        					]
+        				},
+        		        {
+                		"location": "po0",
+                		"destinations": [
+               					{
+               						"location": "po1",
+                					"assignments": [
+                                               {
+                                                "ref": "x",
+                                                 "value": {"op":"+", "left":"y", "right":2}
+
+                                              }
+                						]
+                					}
+                			]
+                		}
+        			]
+        		},
+        		{
+                     "name": "automaton2",
+                           "locations": [{"name" : "base"}, {"name": "po0"}, {"name": "po1"}],
+                           "initial-locations": ["base"],
+                           "edges": [
+                                	{"location": "base","destinations": [{"location": "po0"}]},
+                                	{"location": "po0","destinations": [{"location": "po1"}]},
+                                	{"location": "po1","destinations": [{"location": "po1", "assignments":[{"ref":"x", "value":6}]}]}
+                     ]
+
+                }
+	], 
+	"system": {
+		"elements": [ {"automaton": "automaton1"},{"automaton": "automaton2"}]
+	}
+}
+
