@@ -1,7 +1,7 @@
 # Algorithms for Deciding the Safety of States in Fully Observable Non-deterministic Problems — Camera-Ready Release
 
 ## Repository Structure
-
+data and benchmarks are hosted on Zenodo: https://doi.org/10.5281/zenodo.18926835
 ```
 .
 ├── benchmarks/         # Benchmark suite
