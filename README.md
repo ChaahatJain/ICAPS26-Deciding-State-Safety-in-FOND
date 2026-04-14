@@ -39,7 +39,7 @@ docker pull chaahatjain/plaja_dependencies:MRv0.5
 Run the build inside the container, mounting the `code/` directory:
 
 ```bash
-docker run --rm \
+docker run --rm -it \
   -v $(pwd)/code:/ws \
   -w /ws \
   chaahatjain/plaja_dependencies:MRv0.5 /bin/bash
@@ -52,6 +52,16 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Release ..
 make -j 4
 ```
+
+Alternatively, the following should work:
+```
+docker run --rm -it \
+  -v "$(pwd)/code:/ws" \
+  -w /ws \
+  chaahatjain/plaja_dependencies:MRv0.5 \
+  /bin/bash -lc 'mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j4'
+```
+
 ---
 
 ## Running an Experiment
